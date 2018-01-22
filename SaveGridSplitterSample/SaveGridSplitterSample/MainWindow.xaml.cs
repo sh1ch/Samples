@@ -61,8 +61,14 @@ namespace SaveGridSplitterSample
             var height1 = settings.Default.GridRowHeight1;
             var height3 = settings.Default.GridRowHeight3;
 
-            SplitGrid.RowDefinitions[0].Height = new GridLength(height1, GridUnitType.Star);
-            SplitGrid.RowDefinitions[2].Height = new GridLength(height3, GridUnitType.Star);
+            if (height1 > 0)
+            {
+                SplitGrid.RowDefinitions[0].Height = new GridLength(height1, GridUnitType.Star);
+            }
+            if (height3 > 0)
+            {
+                SplitGrid.RowDefinitions[2].Height = new GridLength(height3, GridUnitType.Star);
+            }
         }
 
     }
