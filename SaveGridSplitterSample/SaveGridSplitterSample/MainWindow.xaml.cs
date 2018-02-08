@@ -50,7 +50,7 @@ namespace SaveGridSplitterSample
         private void Save()
         {
             var heights = SplitGrid.RowDefinitions.Select(p => p.ActualHeight).ToArray();
-
+            
             settings.Default.GridRowHeight1 = heights[0];
             settings.Default.GridRowHeight3 = heights[2];
             settings.Default.Save();
