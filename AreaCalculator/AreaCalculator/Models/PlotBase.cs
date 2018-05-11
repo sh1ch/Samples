@@ -96,7 +96,7 @@ namespace AreaCalculator.Models
         /// <summary>
         /// <see cref="PlotModel"/> モデルを更新します。
         /// </summary>
-        public void UpdatePlot()
+        public void Update()
         {
             PlotModel.InvalidatePlot(true);
         }

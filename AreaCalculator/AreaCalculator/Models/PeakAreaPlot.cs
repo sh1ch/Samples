@@ -32,7 +32,7 @@ namespace AreaCalculator.Models
 
         public AreaSeries Series { get; } = new AreaSeries()
         {
-            TrackerFormatString = "{1} : {2:mm\\:ss}\n{3} : {4:0.###}\n{Tag}",
+            TrackerFormatString = "{1} : {2:mm\\:ss\\.f}\n{3} : {4:0.000}\n{Tag}",
         };
 
         public ScatterSeries ScatterSeries { get; } = new ScatterSeries()
@@ -40,7 +40,7 @@ namespace AreaCalculator.Models
             MarkerType = MarkerType.Circle,
             MarkerSize = 5,
             MarkerFill = OxyColors.MidnightBlue,
-            TrackerFormatString = "{Tag}\n{1} : {2:mm\\:ss}\n{3} : {4:0.###}",
+            TrackerFormatString = "{Tag}\n{1} : {2:mm\\:ss\\.f}\n{3} : {4:0.000}",
         };
 
         #endregion
@@ -84,75 +84,122 @@ namespace AreaCalculator.Models
 
         #region Public Methods
 
-        public void InitializeSeries(IEnumerable<DataPoint> points)
+        public void InitializeSeries1(IEnumerable<DataPoint> points)
         {
-            ClearSeries(false);
+            ClearSeries();
 
             foreach (var p in  points)
             {
                 Series.Points.Add(new OxyPlot.DataPoint(p.X, p.Y));
                 Series.Points2.Add(new OxyPlot.DataPoint(p.X, p.Y));
             }
+        }
+
+        public void InitializeSeries2(IEnumerable<DataPoint> points, PeakResult result)
+        {
+            Series.Points2.Clear();
+
+            // ピークが認識できていないときは、エリア表示を使用しない
+            if (result.IsEnabled == false)
+            {
+                foreach (var p in points)
+                {
+                    Series.Points2.Add(new OxyPlot.DataPoint(p.X, p.Y));
+                }
+                return;
+            }
+
+            var startSeconds = result.StartPoint.X;
+            var endSeconds = result.EndPoint.X;
+
+            var beforePoints = points.Where(p => p.X < startSeconds);
+            var afterPoints = points.Where(p => p.X > endSeconds);
+            var peakPoints = points.Where(p => p.X >= startSeconds && p.X <= endSeconds);
+
+            // ピーク開始前の点
+            if ((beforePoints?.Count() ?? 0) > 0)
+            {
+                foreach (var p in beforePoints)
+                {
+                    Series.Points2.Add(new OxyPlot.DataPoint(p.X, p.Y));
+                }
+            }
+
+            // ピーク中の点
+            if ((peakPoints?.Count() ?? 0) > 0)
+            {
+                var x = result.BaseLine.Item1;
+                var y = result.BaseLine.Item2;
+
+                foreach (var p in peakPoints)
+                {
+                    double px = 0; double py = 0;
+                    px = p.X;
+                    py = p.X * x + y;
+
+                    // 実際の位置がベースラインよりも低いときは、実際の点の位置を優先する
+                    if (p.Y < py)
+                    {
+                        py = p.Y;
+                    }
+
+                    Series.Points2.Add(new OxyPlot.DataPoint(px, py));
+                }
+            }
+
+            // ピーク終了後の点
+            if ((afterPoints?.Count() ?? 0) > 0)
+            {
+                foreach (var p in afterPoints)
+                {
+                    Series.Points2.Add(new OxyPlot.DataPoint(p.X, p.Y));
+                }
+            }
+        }
+
+        public void UpdatePeakPoints(PeakResult result)
+        {
+            // 現在のポイントをクリア
+            ScatterSeries.Points.Clear();
+
+            // ピークとして認められていないとき、追加しない
+            if (result.IsEnabled == false)
+            {
+                return;
+            }
 
             // 最高点を求める
-            var maxPoint = GetHeightestPoint(points);
-            ScatterSeries.Points.Add(new ScatterPoint(maxPoint.X, maxPoint.Y, tag:"ピークの頂点"));
+            var topPoint = result.TopPoint;
 
-            // 開始点
-
-            // 終了点
-
-            // TODO ピークとして認められるかを確認
-
-            // NG のときは、解除する
-
-            PlotModel.InvalidatePlot(true);
-        }
-
-        /// <summary>
-        /// 指定した列挙子から、最も高い <see cref="DataPoint.Y"/> を持つデータを取得します。
-        /// </summary>
-        /// <param name="points">列挙子。</param>
-        /// <returns>最も高い信号強度を持つデータ。</returns>
-        public DataPoint GetHeightestPoint(IEnumerable<DataPoint> points)
-        {
-            if (points == null) throw new NullReferenceException("指定した列挙子は null です。");
-            if (points.Count() <= 0) throw new ArgumentOutOfRangeException("指定した列挙子は、適切なデータの数を持ちません。");
-
-            DataPoint selectedPoint = null;
-            var value = points.Max(p => p.Y);
-            var maxPoints = points.Where(p => p.Y == value);
-            var pointCount = (maxPoints?.Count() ?? 0);
-
-            if (pointCount > 0)
+            if (topPoint != null)
             {
-                // 偶数の最大値を持つときは -1 してインデックスを取得する
-                var selectingIndex = (pointCount % 2 == 0) ? ((pointCount - 1) / 2) : (pointCount / 2);
-                selectedPoint = maxPoints.ElementAt(selectingIndex);
-            }
-            else
-            {
-                throw new NullReferenceException("指定した列挙子の最大値の取得に失敗しました。");
+                ScatterSeries.Points.Add(new ScatterPoint(topPoint.X, topPoint.Y, tag: "ピークの頂点"));
             }
 
-            return selectedPoint;
+            var startPoint = result.StartPoint;
+            var endPoint = result.EndPoint;
+
+            if (startPoint != null)
+            {
+                ScatterSeries.Points.Add(new ScatterPoint(startPoint.X, startPoint.Y, tag: "ピークの開始点"));
+            }
+
+            if (endPoint != null)
+            {
+                ScatterSeries.Points.Add(new ScatterPoint(endPoint.X, endPoint.Y, tag: "ピークの終了点"));
+            }
         }
 
-        public void ClearSeries(bool isInvalidated = true)
+        public void ClearSeries()
         {
             Series.Points.Clear();
             Series.Points2.Clear();
             ScatterSeries.Points.Clear();
-
-            if (isInvalidated)
-            {
-                PlotModel.InvalidatePlot(true);
-            }
         }
 
         public override void SaveCsvFile(string filePath)
         {
-
+            throw new InvalidOperationException();
         }
 
         #endregion

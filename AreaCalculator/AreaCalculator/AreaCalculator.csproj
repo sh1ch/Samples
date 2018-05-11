@@ -81,12 +81,19 @@
     </ApplicationDefinition>
     <Compile Include="Models\DataPoint.cs" />
     <Compile Include="Models\PeakAreaPlot.cs" />
+    <Compile Include="Models\PeakCalculationParameter.cs" />
     <Compile Include="Models\PeakFile.cs" />
+    <Compile Include="Models\PeakOption.cs" />
     <Compile Include="Models\PlotBase.cs" />
     <Compile Include="Models\PlotGestureControllerExtension.cs" />
     <Compile Include="Models\PositionEventArgs.cs" />
+    <Compile Include="Models\PeakResult.cs" />
     <Compile Include="Models\SignalConverter\ISignalConverter.cs" />
     <Compile Include="Models\SignalConverter\SignalConverterV1.cs" />
+    <Compile Include="Models\SignalSelection\ChangingSignalSelection.cs" />
+    <Compile Include="Models\SignalSelection\ISignalSelection.cs" />
+    <Compile Include="Models\SignalSelection\SignalSelectionType.cs" />
+    <Compile Include="Models\SignalSelection\SimpleSignalSelection.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -121,7 +128,7 @@
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
+      <Generator>PublicSettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
@@ -151,6 +158,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

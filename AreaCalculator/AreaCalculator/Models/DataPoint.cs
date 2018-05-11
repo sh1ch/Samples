@@ -14,7 +14,7 @@ namespace AreaCalculator.Models
     /// <summary>
     /// <see cref="DataPoint"/> クラスは、信号のデータを表現するクラスです。
     /// </summary>
-    [DebuggerDisplay("X={X}, Y={Y}")]
+    [DebuggerDisplay("X={X}, Y={Y}, NextSlope={NextSlope}")]
     public class DataPoint
     {
         #region Properties
@@ -57,7 +57,7 @@ namespace AreaCalculator.Models
         /// </summary>
         public double NextSlope
         {
-            get { return GetSlope(Previous); }
+            get { return GetSlope(Next); }
         }
 
         #endregion

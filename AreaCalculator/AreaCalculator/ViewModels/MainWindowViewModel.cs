@@ -18,6 +18,9 @@ namespace AreaCalculator.ViewModels
 
         public PeakAreaPlot PeakPlot { get; } = new PeakAreaPlot();
         public PeakFile File { get; } = new PeakFile();
+        public PeakCalculationParameter Parameter { get; } = new PeakCalculationParameter();
+        public PeakResult Result { get; } = new PeakResult();
+        public PeakOption Option { get; } = new PeakOption();
 
         #endregion
 
@@ -35,37 +38,123 @@ namespace AreaCalculator.ViewModels
                 // ピークの表を初期化する
                 if (points != null && points.Count() > 0)
                 {
-                    PeakPlot.InitializeSeries(points);
+                    // ピークを評価
+                    Result.MeasurePeakPoints(points, Parameter.StartFactor, Parameter.EndFactor, Parameter.FactorMinSeconds);
+                    Result.UpdatePeakArea(points);
+
+                    // オプションを更新
+                    Option.UpdateSymmetryFactor(points, Result);
+                    Option.UpdateTheoreticalPlateNumber(points, Result);
+
+                    // グラフを更新
+                    PeakPlot.InitializeSeries1(points);
+                    PeakPlot.InitializeSeries2(points, Result);
+
+                    PeakPlot.UpdatePeakPoints(Result);
+                    PeakPlot.Update();
                 }
                 else
                 {
                     PeakPlot.ClearSeries();
                 }
             };
-        }
 
-        #endregion
-
-        #region Events
-
-        private RelayCommand<CommandInfoArgs> _GetPeakAreaCommand;
-
-        public RelayCommand<CommandInfoArgs> GetPeakAreaCommand
-        {
-            get
+            Result.PropertyChanged += (sender, args) =>
             {
-                return _GetPeakAreaCommand = _GetPeakAreaCommand ?? new RelayCommand<CommandInfoArgs>(GetPeakArea);
-            }
-        }
+                if (Result.IsEnabled)
+                {
+                    var startSeconds = Result.StartPoint.X;
+                    var endSeconds = Result.EndPoint.X;
 
-        private void GetPeakArea(CommandInfoArgs args)
-        {
-
+                    Parameter.StartSeconds = startSeconds;
+                    Parameter.EndSeconds = endSeconds;
+                }
+            };
         }
 
         #endregion
 
         #region Commands
+
+        private RelayCommand<CommandInfoArgs> _CopyToClipboardCommand;
+
+        public RelayCommand<CommandInfoArgs> CopyToClipboardCommand
+        {
+            get
+            {
+                return _CopyToClipboardCommand = _CopyToClipboardCommand ?? new RelayCommand<CommandInfoArgs>(CopyToClipboard);
+            }
+        }
+
+        private void CopyToClipboard(CommandInfoArgs args)
+        {
+            var text = args.Parameter?.ToString() ?? "";
+
+            Clipboard.SetText(text);
+        }
+
+        private RelayCommand<CommandInfoArgs> _CalculatePeakPointsFromFactorCommand;
+
+        public RelayCommand<CommandInfoArgs> CalculatePeakPointsFromFactorCommand
+        {
+            get
+            {
+                return _CalculatePeakPointsFromFactorCommand = _CalculatePeakPointsFromFactorCommand ?? new RelayCommand<CommandInfoArgs>(CalculatePeakPointsFromFactor);
+            }
+        }
+
+        private void CalculatePeakPointsFromFactor(CommandInfoArgs args)
+        {
+            var points = File.Points;
+            if ((points?.Count() ?? 0) <= 0) return;
+
+            // ピークを評価
+            Result.MeasurePeakPoints(points, Parameter.StartFactor, Parameter.EndFactor, Parameter.FactorMinSeconds);
+            Result.UpdatePeakArea(points);
+
+            // グラフを更新
+            PeakPlot.InitializeSeries2(points, Result);
+
+            PeakPlot.UpdatePeakPoints(Result);
+            PeakPlot.Update();
+        }
+
+        private RelayCommand<CommandInfoArgs> _CalculatePeakPointsFromSecondCommand;
+
+        public RelayCommand<CommandInfoArgs> CalculatePeakPointsFromSecondCommand
+        {
+            get
+            {
+                return _CalculatePeakPointsFromSecondCommand = _CalculatePeakPointsFromSecondCommand ?? new RelayCommand<CommandInfoArgs>(CalculatePeakPointsFromSecond);
+            }
+        }
+
+        private void CalculatePeakPointsFromSecond(CommandInfoArgs args)
+        {
+            var points = File.Points;
+            if ((points?.Count() ?? 0) <= 0) return;
+
+            var startSeconds = Parameter.StartSeconds;
+            var endSeconds = Parameter.EndSeconds;
+
+            // 時間の指定が逆のとき、入れ替えて計算
+            if (endSeconds < startSeconds)
+            {
+                var temp = startSeconds;
+
+                startSeconds = endSeconds;
+                endSeconds = temp;
+            }
+
+            Result.ForceSetPeakPoint(points, startSeconds, endSeconds);
+            Result.UpdatePeakArea(points);
+
+            // グラフを更新
+            PeakPlot.InitializeSeries2(points, Result);
+
+            PeakPlot.UpdatePeakPoints(Result);
+            PeakPlot.Update();
+        }
 
         private RelayCommand<CommandInfoArgs<DragEventArgs>> _DragOverCsvFileCommand;
 
@@ -120,9 +209,24 @@ namespace AreaCalculator.ViewModels
                 if (System.IO.File.Exists(selectedFile) && 
                    (Path.GetExtension(selectedFile).ToLower() == ".txt" || Path.GetExtension(selectedFile).ToLower() == ".csv"))
                 {
-                    File.Parse(selectedFile);
+                    File.Parse(selectedFile, Parameter.SignalSelectionType);
                 }
             }
+        }
+
+        private RelayCommand<CommandInfoArgs> _CloseWindowCommand;
+
+        public RelayCommand<CommandInfoArgs> CloseWindowCommand
+        {
+            get
+            {
+                return _CloseWindowCommand = _CloseWindowCommand ?? new RelayCommand<CommandInfoArgs>(CloseWindow);
+            }
+        }
+
+        private void CloseWindow(CommandInfoArgs args)
+        {
+            Parameter.Save();
         }
 
         #endregion

@@ -1,4 +1,5 @@
 ﻿using AreaCalculator.Models.SignalConverter;
+using AreaCalculator.Models.SignalSelection;
 using HeritageFramework;
 using HeritageFramework.Wpf;
 using System;
@@ -82,7 +83,8 @@ namespace AreaCalculator.Models
         /// </para>
         /// </summary>
         /// <param name="path">ファイルパス。</param>
-        public void Parse(string path)
+        /// <param name="type">シグナルの取得方法。</param>
+        public void Parse(string path, SignalSelectionType type)
         {
             _Points.Clear();
 
@@ -91,18 +93,18 @@ namespace AreaCalculator.Models
                 using (var reader = new StreamReader(path, Encoding.UTF8))
                 {
                     var converter = new SignalConverterV1();
+                    var dataSelector = GetSignalSelection(type);
                     var line = "";
                     int sec = 0;
 
-                    while((line = reader.ReadLine()) != null)
+                    while ((line = reader.ReadLine()) != null)
                     {
                         if (string.IsNullOrEmpty(line)) continue;
 
                         var data = line.Split(',');
-                        var dataText = data.Skip(1).Take(10); // 10 個取得 (0.1秒刻み)
 
                         sec = int.Parse(data[0]);
-                        var signals = dataText.Select(p => int.Parse(p)).ToArray();
+                        var signals = dataSelector.Select(data.Skip(1), 10);
 
                         for (var i = 0; i < signals.Count(); i++)
                         {
@@ -137,6 +139,30 @@ namespace AreaCalculator.Models
 
             DataPointUpdated?.Invoke(this, GenericEventArgs.Create(Points));
             PropertyChanged.Raise(this, nameof(DataCount));
+        }
+
+        #endregion
+
+        #region Private Methods
+
+        private ISignalSelection GetSignalSelection(SignalSelectionType type)
+        {
+            ISignalSelection selection = null;
+
+            switch (type)
+            {
+                case SignalSelectionType.Simple:
+                    selection = new SimpleSignalSelection();
+                    break;
+                case SignalSelectionType.ChangingPoint:
+                    selection = new ChangingSignalSelection();
+                    break;
+                default:
+                    selection = new SimpleSignalSelection();
+                    break;
+            }
+
+            return selection;
         }
 
         #endregion

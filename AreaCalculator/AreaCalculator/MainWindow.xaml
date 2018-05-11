@@ -3,18 +3,29 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:oxy="clr-namespace:OxyPlot.Wpf;assembly=OxyPlot.Wpf"
         xmlns:hf="clr-namespace:HeritageFramework.Wpf;assembly=HeritageFramework.Wpf"
         xmlns:v="clr-namespace:AreaCalculator"
         xmlns:vm="clr-namespace:AreaCalculator.ViewModels"
+        xmlns:ss="clr-namespace:AreaCalculator.Models.SignalSelection"
         mc:Ignorable="d"
         Title="クロマト処理のサンプル" Height="600" Width="800"
         AllowDrop="True" 
         PreviewDragOver="{hf:EventToCommandInfo DragOverCsvFileCommand}"
-        Drop="{hf:EventToCommandInfo DropCsvFileCommand}">
+        Drop="{hf:EventToCommandInfo DropCsvFileCommand}"
+        Closed="{hf:EventToCommandInfo CloseWindowCommand}">
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
+    <Window.Resources>
+        <!-- Enum -->
+        <ObjectDataProvider x:Key="SignalSelectionType" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="ss:SignalSelectionType" />
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -24,7 +35,7 @@
         <Grid Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" MaxHeight="500" />
             </Grid.RowDefinitions>
 
             <Grid Grid.Row="0">
@@ -35,81 +46,335 @@
                               />
             </Grid>
             <Grid Grid.Row="1" Background="#66B1ADA5" MinHeight="150">
-                <Grid Margin="10">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                <Grid>
+                    <ScrollViewer HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible">
+                        <StackPanel Orientation="Vertical" Margin="10">
+                            <StackPanel Orientation="Horizontal">
+                                <!-- ピーク基礎情報 -->
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" MinWidth="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                    <!-- 情報 左 -->
-                    <Grid Grid.Column="0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="*" />
-                        </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                            <RowDefinition Height="Auto" />
-                        </Grid.RowDefinitions>
+                                    <Label Grid.Column="0" Grid.Row="0"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="頂点" ContentStringFormat="{}{0} : " />
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.TopPoint.X}"
+                                           ContentStringFormat="{}({0:0.0},"/>
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.TopPoint.Y}"
+                                           ContentStringFormat="{}{0:0.0000})"/>
+                                    </StackPanel>
+                                    <Label Grid.Column="0" Grid.Row="1"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="開始" ContentStringFormat="{}{0} : " />
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.StartPoint.X}"
+                                           ContentStringFormat="{}({0:0.0},"/>
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.StartPoint.Y}"
+                                           ContentStringFormat="{}{0:0.0000})"/>
+                                    </StackPanel>
 
-                        <Label Grid.Column="0" Grid.Row="0"
-                               HorizontalAlignment="Left" HorizontalContentAlignment="Left"
-                               VerticalAlignment="Center" VerticalContentAlignment="Center"
-                               Content="解析中のファイル" ContentStringFormat="{}{0} : " />
-                        <Label Grid.Column="1" Grid.Row="0"
-                               HorizontalAlignment="Left" HorizontalContentAlignment="Left"
-                               VerticalAlignment="Center" VerticalContentAlignment="Center"
-                               Content="{Binding File.SelectedPath}" />
+                                    <Label Grid.Column="0" Grid.Row="2"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="終了" ContentStringFormat="{}{0} : " />
+                                    <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.EndPoint.X}"
+                                           ContentStringFormat="{}({0:0.0},"/>
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.EndPoint.Y}"
+                                           ContentStringFormat="{}{0:0.0000})"/>
+                                    </StackPanel>
 
-                        <Label Grid.Column="0" Grid.Row="1"
-                               HorizontalAlignment="Left" HorizontalContentAlignment="Left"
-                               VerticalAlignment="Center" VerticalContentAlignment="Center"
-                               Content="データ数" ContentStringFormat="{}{0} : " />
-                        <Label Grid.Column="1" Grid.Row="1"
-                               HorizontalAlignment="Left" HorizontalContentAlignment="Left"
-                               VerticalAlignment="Center" VerticalContentAlignment="Center"
-                               Content="{Binding File.DataCount}" />
+                                    <Label Grid.Column="0" Grid.Row="3"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="直線式" ContentStringFormat="{}{0} : " />
+                                    <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.BaseLine.Item1}"
+                                           ContentStringFormat="{}Y = {0:+0.00000;-0.00000;''}  x"/>
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.BaseLine.Item2}"
+                                           ContentStringFormat="{}{0:+0.000;-0.000;''}"/>
+                                    </StackPanel>
 
-                    </Grid>
+                                    <Button Grid.Column="0" Grid.Row="4" Padding="5 2 2 2"
+                                        HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                        VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                        Content="面積" ContentStringFormat="{}{0} : " 
+                                        Command="{hf:CommandInfo CopyToClipboardCommand}"
+                                        CommandParameter="{Binding Result.Area}"
+                                        ToolTip="クリップボードに面積値をコピーします" />
+                                    <StackPanel Grid.Column="1" Grid.Row="4" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="{Binding Result.Area}"
+                                           ContentStringFormat="{}{0}"/>
+                                    </StackPanel>
+
+                                </Grid>
+                                <Grid Margin="10 0 0 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" MinWidth="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0"
+                                           HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="項 f" ContentStringFormat="{}{0} : " />
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                               VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                               Content="{Binding Option.f}"
+                                               ContentStringFormat="{}{0:+0.00;-0.00;''}"/>
+                                    </StackPanel>
+
+                                    <Label Grid.Column="0" Grid.Row="1"
+                                           HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="項 W (0.05h)" ContentStringFormat="{}{0} : " />
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                               VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                               Content="{Binding Option.W_005}"
+                                               ContentStringFormat="{}{0:+0.00;-0.00;''}" />
+                                    </StackPanel>
+
+                                    <Button Grid.Column="0" Grid.Row="3" Padding="5 2 2 2"
+                                            HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                            VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                            Content="シンメトリー係数" ContentStringFormat="{}{0} : " 
+                                            Command="{hf:CommandInfo CopyToClipboardCommand}"
+                                            CommandParameter="{Binding Option.SymmetryFactor}"
+                                            ToolTip="クリップボードに係数をコピーします" />
+                                    <StackPanel Grid.Column="1" Grid.Row="3" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                               VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                               Content="{Binding Option.SymmetryFactor}"
+                                               ContentStringFormat="{}{0:0.0000}"
+                                               ToolTip="S &gt; 1 テーリングピーク&#xa;S = 1 左右対称&#xa;S &lt; 1 リーディングピーク" />
+                                    </StackPanel>
+                                </Grid>
+                                <Grid Margin="10 0 0 0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" MinWidth="100" />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="0"
+                                           HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                           VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                           Content="項 W (0.5h)" ContentStringFormat="{}{0} : " />
+                                    <StackPanel Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                               VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                               Content="{Binding Option.W_05}"
+                                               ContentStringFormat="{}{0:+0.00;-0.00;''}" />
+                                    </StackPanel>
+
+                                    <Button Grid.Column="0" Grid.Row="1" Padding="5 2 2 2"
+                                            HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                            VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                            Content="理論段数" ContentStringFormat="{}{0} : "
+                                            Command="{hf:CommandInfo CopyToClipboardCommand}"
+                                            CommandParameter="{Binding Option.TheoreticalPlateNumber}"
+                                            ToolTip="クリップボードに段数をコピーします" />
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                                        <Label HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                               VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                               Content="{Binding Option.TheoreticalPlateNumber}"
+                                               ContentStringFormat="{}{0:0.0000}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </StackPanel>
+
+                            <!-- ピークファイル情報 -->
+                            <Grid Margin="0 10 0 0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+
+                                <Label Grid.Column="0" Grid.Row="0"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="解析中のファイル" ContentStringFormat="{}{0} : " />
+                                <Label Grid.Column="1" Grid.Row="0"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="{Binding File.SelectedPath}" />
+
+                                <Label Grid.Column="0" Grid.Row="1"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="データ数" ContentStringFormat="{}{0} : " />
+                                <Label Grid.Column="1" Grid.Row="1"
+                                       HorizontalAlignment="Left" HorizontalContentAlignment="Left"
+                                       VerticalAlignment="Center" VerticalContentAlignment="Center"
+                                       Content="{Binding File.DataCount}" />
+
+                            </Grid>
+                        </StackPanel>
+                    </ScrollViewer>
+                    
+                    
+                    
                     <!-- 情報 右 -->
-                    <Grid Grid.Column="1">
-                        
-                    </Grid>
+                    
                 </Grid>
             </Grid>
         </Grid>
         <Grid Grid.Column="1" Margin="10">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto" />
-                <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
-                    Margin="10 0 10 10" Padding="4 6"
-                    Content="自動取得"
-                    Command="{Binding GetPeakAreaCommand}" />
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="120" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
 
-            <Label Grid.Column="0" Grid.Row="1" 
-                   Content="開始時間 (s)" 
-                   ContentStringFormat="{}{0} : " />
-            <TextBox Grid.Column="1" Grid.Row="1"
-                     Padding="4 6"
-                     HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                     MinWidth="100" />
+                <Label Grid.Column="0" Grid.Row="1" 
+                       Content="ファイル読込時の信号取得方法" 
+                       ContentStringFormat="{}{0} : " />
+                
+                <ComboBox Grid.Column="1" Grid.Row="0" 
+                          Padding="6" MinWidth="100"
+                          HorizontalAlignment="Left" VerticalAlignment="Center"
+                          HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
+                          ItemsSource="{Binding Source={StaticResource SignalSelectionType}}"
+                          SelectedItem="{Binding Parameter.SignalSelectionType}" />
 
-            <Label Grid.Column="0" Grid.Row="2" 
-                   Content="終了時間 (s)" 
-                   ContentStringFormat="{}{0} : " />
-            <TextBox Grid.Column="1" Grid.Row="2"
-                     Padding="4 6"
-                     HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
-                     MinWidth="100" />
+            </Grid>
+
+            <Grid Grid.Row="1" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="120" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                        Margin="10 0 10 10" Padding="4 6"
+                        Content="検出条件 再設定"
+                        Command="{hf:CommandInfo CalculatePeakPointsFromFactorCommand}" />
+
+                <Label Grid.Column="0" Grid.Row="1" 
+                       Content="開始検出値 (x)" 
+                       ContentStringFormat="{}{0} : " />
+                <TextBox Grid.Column="1" Grid.Row="1"
+                         Padding="4 6"
+                         HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                         MinWidth="100" 
+                         Text="{Binding Parameter.StartFactor}" />
+
+                <Label Grid.Column="0" Grid.Row="2" 
+                       Content="終了検出値 (x)" 
+                       ContentStringFormat="{}{0} : " />
+                <TextBox Grid.Column="1" Grid.Row="2"
+                         Padding="4 6"
+                         HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                         MinWidth="100"
+                         Text="{Binding Parameter.EndFactor}" />
+
+                <Label Grid.Column="0" Grid.Row="3" 
+                       Content="最小幅 (s)" 
+                       ContentStringFormat="{}{0} : " />
+                <TextBox Grid.Column="1" Grid.Row="3"
+                         Padding="4 6"
+                         HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                         MinWidth="100"
+                         Text="{Binding Parameter.FactorMinSeconds}" />
+            </Grid>
+
+            <Grid Grid.Row="2" Margin="0 10 0 0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" MinWidth="120" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Button Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"
+                        Margin="10 0 10 10" Padding="4 6"
+                        Content="(強制) 時間条件 再設定"
+                        Command="{hf:CommandInfo CalculatePeakPointsFromSecondCommand}" />
+
+                <Label Grid.Column="0" Grid.Row="1" 
+                       Content="開始時間 (s)" 
+                       ContentStringFormat="{}{0} : " />
+                <TextBox Grid.Column="1" Grid.Row="1"
+                         Padding="4 6"
+                         HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                         MinWidth="100"
+                         Text="{Binding Parameter.StartSeconds}" />
+
+                <Label Grid.Column="0" Grid.Row="2" 
+                       Content="終了時間 (s)" 
+                       ContentStringFormat="{}{0} : " />
+                <TextBox Grid.Column="1" Grid.Row="2"
+                         Padding="4 6"
+                         HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                         MinWidth="100"
+                         Text="{Binding Parameter.EndSeconds}" />
+            </Grid>
+
         </Grid>
     </Grid>
 </Window>
