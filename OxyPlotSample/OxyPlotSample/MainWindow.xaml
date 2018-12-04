@@ -1,0 +1,45 @@
+﻿<Window x:Class="OxyPlotSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OxyPlotSample"
+        xmlns:oxy="http://oxyplot.org/wpf"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <oxy:PlotView Grid.Column="0" Margin="12" DataContext="{Binding Sample1}" Model="{Binding Model}" Controller="{Binding Controller}" />
+
+            <oxy:Plot Grid.Column="1" x:Name="plot" Padding="20" DataContext="{Binding Sample2}">
+                <oxy:Plot.Axes>
+                    <oxy:TimeSpanAxis x:Name="x" Position="Bottom" />
+                    <oxy:LinearAxis x:Name="y" Position="Left" />
+                </oxy:Plot.Axes>
+                <oxy:LineSeries x:Name="series" ItemsSource="{Binding Samples}"  
+                                Title="Custom"
+                                DataFieldX="Time" DataFieldY="Value" />
+            </oxy:Plot>
+        </Grid>
+        
+
+        <StackPanel Grid.Row="1" Orientation="Horizontal">
+            <Button Padding="10" Content="データの追加" Click="Button_Click_1" />
+            <Button Padding="10" Content="Series 更新" Click="Button_Click_2" />
+            <Button Padding="10" Content="Axis 更新" Click="Button_Click_3" />
+            <Button Padding="10" Content="Controller 更新" Click="Button_Click_4" />
+            <Button Padding="10" Content="画像の保存" Click="Button_Click_Save" />
+        </StackPanel>
+        
+    </Grid>
+</Window>
