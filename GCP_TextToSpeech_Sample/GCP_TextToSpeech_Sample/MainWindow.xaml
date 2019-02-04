@@ -4,11 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:GCP_TextToSpeech_Sample"
+        Closing="Window_Closing"
         mc:Ignorable="d"
-        Title="GCP Text to speech サンプル" Height="350" Width="525">
+        Title="GCP Text to speech サンプル" Height="600" Width="525">
     <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -80,10 +83,81 @@
                 Content="サンプル再生"
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                 Click="Button_Click_Play" />
-        <Button Grid.Row="3" 
+
+        <Grid Grid.Row="3" Margin="10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label Grid.Column="0" Grid.Row="0"
+                   Foreground="Gray"
+                   Content="Use AutoIncrement"
+                   ContentStringFormat="{}{0} : " />
+            <CheckBox x:Name="UseAutoIncrement" Grid.Column="0" Grid.Row="1"  Margin="2 10"
+                      HorizontalAlignment="Left" VerticalAlignment="Center" />
+
+            <DockPanel Grid.Column="1" Grid.Row="0" >
+                <Label DockPanel.Dock="Left" 
+                       Foreground="Gray"
+                       Content="Scene ID (A-Z)"
+                       ContentStringFormat="{}{0} : " />
+            </DockPanel>
+
+            <TextBox x:Name="SceneID"
+                     Grid.Column="1" Grid.Row="1"
+                     Padding="6 10"
+                     MaxLength="2"
+                     VerticalContentAlignment="Center" />
+
+            <DockPanel Grid.Column="2" Grid.Row="0" >
+                <Label DockPanel.Dock="Left" 
+                       Foreground="Gray"
+                       Content="Text ID (000-999)"
+                       ContentStringFormat="{}{0} : " />
+                <Button DockPanel.Dock="Right" 
+                        Padding="6 4"
+                        Content="C"
+                        Click="Button_Click_Zero"
+                        />
+            </DockPanel>
+
+            <TextBox x:Name="TextID"
+                     Grid.Column="2" Grid.Row="1"
+                     Padding="6 10"
+                     MaxLength="3"
+                     HorizontalContentAlignment="Right"
+                     VerticalContentAlignment="Center" />
+
+            <Label Grid.Column="3" Grid.Row="1" 
+                   VerticalAlignment="Center" HorizontalAlignment="Center"
+                   Content="-"/>
+
+            <TextBox x:Name="RetakeID"
+                     Grid.Column="4" Grid.Row="1"
+                     Padding="6 10"
+                     MaxLength="2" MinWidth="50"
+                     HorizontalContentAlignment="Right"
+                     VerticalContentAlignment="Center" />
+
+
+        </Grid>
+
+        <Button Grid.Row="4" 
                 Padding="6 10"
                 Content="MP3 保存"
                 HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
                 Click="Button_Click_Save" />
+
+        <Label x:Name="ResultText"
+               Grid.Row="5" Margin="10 10 10 0"
+               Content="MP3 ファイルは 「mp3」 フォルダに保存されます。" />
     </Grid>
 </Window>

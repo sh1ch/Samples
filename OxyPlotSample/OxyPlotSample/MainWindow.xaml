@@ -31,7 +31,6 @@
                                 DataFieldX="Time" DataFieldY="Value" />
             </oxy:Plot>
         </Grid>
-        
 
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <Button Padding="10" Content="データの追加" Click="Button_Click_1" />
