@@ -41,6 +41,7 @@ namespace MathExpressionParserSample
             var root = new Node();
             var target = root;
 
+            // スペースを削除
             var c = text.Replace(" ", "");
 
             for (int i = 0; i < c.Length; i++)
