@@ -24,21 +24,29 @@ namespace MathExpressionParserSample
             var n5 = p.Parse(text5);
 
             Console.WriteLine("------");
+            Console.WriteLine($"test:{text1}");
             n1.Print();
             Console.WriteLine("------");
+            Console.WriteLine($"test:{text2}");
             n2.Print();
             Console.WriteLine("------");
+            Console.WriteLine($"test:{text3}");
             n3.Print();
             Console.WriteLine("------");
+            Console.WriteLine($"test:{text4}");
             n4.Print();
             Console.WriteLine("------");
+            Console.WriteLine($"test:{text5}");
             n5.Print();
             Console.WriteLine("------");
 
-            Console.WriteLine($"ans:{p.Eval(n1)}");
-            Console.WriteLine($"ans:{p.Eval(n2)}");
-            Console.WriteLine($"ans:{p.Eval(n3)}");
-            Console.WriteLine($"ans:{p.Eval(n4)}");
+            Console.WriteLine($"ans1:{p.Eval(n1)}");
+            Console.WriteLine($"ans2:{p.Eval(n2)}");
+            Console.WriteLine($"ans3:{p.Eval(n3)}");
+            Console.WriteLine($"ans4:{p.Eval(n4)}");
+            Console.WriteLine($"ans5:[] is not value.");
+
+            Console.ReadLine();
 
         }
     }
