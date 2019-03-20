@@ -1,0 +1,143 @@
+<html lang="ja">
+<head>
+<meta charset="utf-8"/>
+<style type="text/css">
+<!--
+body {
+    color: #111111;
+}
+
+p {
+    color: #333333;
+}
+
+/* 背景 */
+#bg-box {
+    background: #f7f7f7;
+}
+
+/* コンテンツ部分 */
+#contents-box { 
+    width: 600px; 
+    margin: 0px auto;
+    background: white;
+    padding: 2em;
+}
+
+/* 社名 */
+.box1 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    background: white;
+    border-top: solid 5px #5d627b;
+}
+.box1 p {
+    margin: 0; 
+    padding: 0;
+    text-align: center;
+}
+
+/* 注意書き */
+.box2 {
+    padding: 0.5em 1em;
+    margin: 2em 0;
+    background: #fff8e8;
+    border-left: solid 10px #ffc06e;
+}
+.box2 p {
+    margin: 0; 
+    padding: 0;
+}
+
+/* h2 のアンダーライン */
+.title {
+    padding-top: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #cfd8d8;
+}
+
+-->
+</style>
+</head>
+
+<body>
+<div id="bg-box">
+<div id="contents-box">
+
+<div>
+<img src="http://j-sl.com/wp-content/uploads/2019/03/logo.png" width="100" style="float: right; margin: 0.8em 0 0.8em 0.8em;">
+</div>
+
+<div class="box1" style="clear: both;">
+<p>未来ガジェット研究所 月次メールマガジン</p>
+<p>2019年 3月 (第001号)</p>
+<p><a href="http://futuregadget-lab.com/" target="_blank">http://futuregadget-lab.com/</a></p>
+</div>
+
+%company%<br />
+%name% 様<br />
+<br />
+<br />
+
+<!-- 前書き -->
+<p>ずいぶん暖かくなってきました。</p>
+<p>最近、電子レンジを逆回転に改造してみたところ、レンジに入れたものがゲル状になるようになってしまいました。</p>
+<p>おかげで唐揚げとバナナがデロデロに……。<br />
+では、今月もよろしくお願いします。</p>
+
+<div class="box2">
+<p>このメールは展示会・セミナーでアンケートにお答え頂いた方、資料請求や名刺交換をさせて頂きました方々へ配信しております。</p>
+<p>このメールは送信専用アドレスよりお送りしております。配信停止・登録変更はメール末尾をご覧ください。</p>
+</div>
+
+<h2 class="title">目次</h2>
+<!-- id リンクの有効/無効は、メーラー依存 -->
+<ol>
+<li>技術講座　＊＊＊＊</li>
+<li>製品紹介　＊＊＊＊</li>
+<li>編集後記</li>
+<li>メルマガに関するご意見・ご要望受付窓口</li>
+<li>お問い合わせ・配信停止</li>
+</ol>
+
+<h2 class="title">技術講座　＊＊＊＊</h2>
+
+<p>未来ガジェット一号ビット粒子砲についての技術講座を公開しました。<br />
+おもちゃの光線銃でリモコン操作をしたい方は次の URL をご確認ください。</p>
+<ul>
+<li><a href="#" target="_blank">未来ガジェット一号ビット粒子砲について</a></li>
+</ul>
+
+<h2 class="title">製品紹介　高純度水素発生器 RHGシリーズ</h2>
+
+<p>未来ガジェット六号が完成しました。サイリウム・セーバーです。<br />
+完成した新しい未来ガジェットは次の URL でご確認ください。</p>
+<ul>
+<li><a href="#" target="_blank">未来ガジェット 紹介ページ</a></li>
+<li><a href="#" target="_blank">未来ガジェット六号</a></li>
+</ul>
+
+<h2 class="title">編集後記</h2>
+
+<p>ここのところ、夜眠ると沖縄に車で出かける夢を見ます。</p>
+<p>ただのバカンスの夢というには、すこし違う感覚だったので……<br />
+<p>なにか調子がわるいのでしょうか。</p>
+
+<h2 class="title">メルマガに関するご意見・ご要望</h2>
+<p>
+皆様のご意見・ご要望を、メルマガに反映させていただきます。<br />
+ご質問等、お気軽にご連絡ください。
+</p>
+<p>連絡先：<a href="mailto:******@****">******@****</a></p>
+
+<h2 class="title">お問い合わせ・配信停止</h2>
+<p>お問い合わせ、メールマガジンの配信停止は HP にて受け付けております。お手数おかけしますが、下記 URL からご連絡ください。</p>
+<p>
+お問い合わせ：<a href="#" target="_blank">http://*****</a><br />
+配信停止：<a href="#" target="_blank">http://*****</a>
+</p>
+
+</div>
+</div>
+</body>
+</html>
