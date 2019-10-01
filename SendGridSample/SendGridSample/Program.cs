@@ -68,7 +68,7 @@ namespace SendGridSample
             message.SetGlobalSubject(subject);
 
             // HTML 形式
-            message.AddContent(MimeType.Html, body);
+            message.AddContent(MimeType.Text, body);
 
             var i = 0;
             foreach (var toUser in toUsers)
