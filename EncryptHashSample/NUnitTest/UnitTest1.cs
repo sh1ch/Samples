@@ -66,5 +66,15 @@ namespace NUnitTest
             });
 
         }
+
+        [TestCase("wdDsJwK_uDdCi@")]
+        [TestCase("rance_sill_athena")]
+        [TestCase("password")]
+        public void Test_16進数以外の文字を含んでいないかのチェック(string password)
+        {
+            var hash = HashGenerator.Generate(password);
+
+            Assert.That(hash, Does.Match("^[0-9|a-f]+$"));
+        }
     }
 }
