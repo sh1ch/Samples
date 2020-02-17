@@ -14,6 +14,7 @@ namespace NUnitTest
         [TestCase("wdDsJwK_uDdCi@")]
         [TestCase("rance_sill_athena")]
         [TestCase("password")]
+        [Timeout(50)]
         public void Test_ハッシュテキストの文字数チェック(string password)
         {
             var hash = HashGenerator.Generate(password);
