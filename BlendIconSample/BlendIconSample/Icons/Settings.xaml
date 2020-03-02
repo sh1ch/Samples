@@ -1,0 +1,128 @@
+﻿<UserControl x:Class="BlendIconSample.Icons.Settings"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlendIconSample.Icons"
+             Name="Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Green" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+    <Viewbox>
+        <Grid Margin="2">
+
+            <Path Data="M15,11 C12.790861,11 11,12.790861 11,15 11,17.209139 12.790861,19 15,19 17.209139,19 19,17.209139 19,15 19,12.790861 17.209139,11 15,11 z M15,0 C23.284271,0 30,6.7157288 30,15 30,23.284271 23.284271,30 15,30 6.7157288,30 0,23.284271 0,15 0,6.7157288 6.7157288,0 15,0 z" 
+                  Fill="{Binding Foreground, ElementName=Control}"
+                  Width="30" Height="30"
+                  Stretch="Fill"/>
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="0 -32 0 0"
+                       VerticalAlignment="Center" />
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="0 +32 0 0"
+                       VerticalAlignment="Center" />
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="32 0 0 0"
+                       VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="-32 0 0 0"
+                       VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="90"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="22.62742 0 0 22.62742"
+                       VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="-22.62742 0 0 22.62742"
+                       VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="135"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="-22.62742 0 0 -22.62742"
+                       VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="45"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+            <Rectangle Fill="{Binding Foreground, ElementName=Control}"
+                       Width="6" Height="10"
+                       RadiusX="1" RadiusY="1" 
+                       Margin="22.62742 0 0 -22.62742"
+                       VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5" >
+                <Rectangle.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="135"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Rectangle.RenderTransform>
+            </Rectangle>
+
+        </Grid>
+    </Viewbox>
+</UserControl>

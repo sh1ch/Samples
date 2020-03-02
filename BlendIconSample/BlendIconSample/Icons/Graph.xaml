@@ -1,0 +1,53 @@
+﻿<UserControl x:Class="BlendIconSample.Icons.Graph"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlendIconSample.Icons"
+             Name="Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+    <Viewbox>
+        <Grid Margin="10">
+            <Path Data="M20,20 L20,280" Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="19,19,0,20" Stretch="Fill" 
+                  Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="6" />
+            <Path Data="M20,20 L20,280" Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="16.499,150,19,-110" Stretch="Fill" 
+                    Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="6">
+                <Path.LayoutTransform>
+                    <RotateTransform Angle="-90" />
+                </Path.LayoutTransform>
+            </Path>
+
+            <Path Data="M45,257 L200,56" Fill="#FFF4F4F5" Margin="19,27.12,79.167,19" Stretch="Fill" 
+                  Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="4"/>
+
+            <Ellipse Margin="0,0,36,42" HorizontalAlignment="Right" Width="24" 
+                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="24" VerticalAlignment="Bottom" />
+            
+            <Ellipse Margin="0,56.501,84.583,0" HorizontalAlignment="Right" Width="23.833" 
+                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="23.833" VerticalAlignment="Top"
+                     Fill="#EECFCFCF" />
+
+            <Path Data="M50,258.5 L263,214.5" Fill="#FFF4F4F5" Height="56.333" Margin="19.667,0,21.439,20.833" Stretch="Fill" 
+                  Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="5" VerticalAlignment="Bottom" />
+
+            <Ellipse Margin="0,0,96,65" HorizontalAlignment="Right" Width="25" 
+                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="24" VerticalAlignment="Bottom" />
+            
+            <Ellipse Margin="95,0,0,45" HorizontalAlignment="Left" Width="24" 
+                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="24" VerticalAlignment="Bottom" />
+
+            <Ellipse Margin="123.251,123.334,0,0" HorizontalAlignment="Left" Width="23.833" 
+                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="23.833" VerticalAlignment="Top" Fill="#EECFCFCF" />
+            
+            <Ellipse Margin="56.917,0,0,84.333" HorizontalAlignment="Left" Width="23.833" 
+                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="23.833" VerticalAlignment="Bottom" Fill="#EECFCFCF" />
+        </Grid>
+    </Viewbox>
+</UserControl>
