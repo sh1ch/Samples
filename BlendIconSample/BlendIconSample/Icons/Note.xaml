@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="BlendIconSample.Icons.Note"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlendIconSample.Icons"
+             Name="Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="600">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Green" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+    <Viewbox>
+        <Grid Margin="10">
+            <Border BorderBrush="Black" BorderThickness="10" CornerRadius="6" Background="{Binding ElementName=Control, Path=Foreground}">
+                <Grid Width="180" Height="240">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="4*" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="3*" />
+                        <RowDefinition Height="10" />
+                        <RowDefinition Height="4*" />
+                    </Grid.RowDefinitions>
+
+                    <Border Grid.Row="1" 
+                            BorderBrush="Black" BorderThickness="5" 
+                            CornerRadius="3" Width="130" />
+
+                    <Border Grid.Row="3" 
+                            BorderBrush="Black" BorderThickness="5" 
+                            CornerRadius="3" Width="130" />
+
+                    <Border Grid.Row="5" 
+                            BorderBrush="Black" BorderThickness="5" 
+                            CornerRadius="3" Width="130" />
+
+                    <Border Grid.Row="7" 
+                            BorderBrush="Black" BorderThickness="5" 
+                            CornerRadius="3" Width="130" />
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Viewbox>
+</UserControl>
