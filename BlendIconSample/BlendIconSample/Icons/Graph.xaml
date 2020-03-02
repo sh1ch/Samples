@@ -14,40 +14,43 @@
         </Style>
     </d:DesignerProperties.DesignStyle>
     <Viewbox>
-        <Grid Margin="10">
-            <Path Data="M20,20 L20,280" Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="19,19,0,20" Stretch="Fill" 
-                  Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="6" />
-            <Path Data="M20,20 L20,280" Fill="#FFF4F4F5" HorizontalAlignment="Left" Margin="16.499,150,19,-110" Stretch="Fill" 
-                    Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="6">
-                <Path.LayoutTransform>
-                    <RotateTransform Angle="-90" />
-                </Path.LayoutTransform>
-            </Path>
+        <Grid Margin="10" Width="280" Height="280">
 
-            <Path Data="M45,257 L200,56" Fill="#FFF4F4F5" Margin="19,27.12,79.167,19" Stretch="Fill" 
-                  Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="4"/>
+            <Line Stroke="Black" StrokeThickness="10" X1="0" Y1="275" X2="280" Y2="275" />
+            <Line Stroke="Black" StrokeThickness="10" X1="0" Y1="280" X2="0" Y2="0"/>
 
-            <Ellipse Margin="0,0,36,42" HorizontalAlignment="Right" Width="24" 
-                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="24" VerticalAlignment="Bottom" />
-            
-            <Ellipse Margin="0,56.501,84.583,0" HorizontalAlignment="Right" Width="23.833" 
-                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="23.833" VerticalAlignment="Top"
-                     Fill="#EECFCFCF" />
+            <Line Stroke="Black" StrokeThickness="6" X1="0" Y1="275" X2="280" Y2="192" RenderTransformOrigin="0,1" />
+            <Line Stroke="Black" StrokeThickness="6" X1="0" Y1="275" X2="280" Y2="-40" RenderTransformOrigin="0,1" />
 
-            <Path Data="M50,258.5 L263,214.5" Fill="#FFF4F4F5" Height="56.333" Margin="19.667,0,21.439,20.833" Stretch="Fill" 
-                  Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="5" VerticalAlignment="Bottom" />
+            <Ellipse Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3"
+                     Margin="46.25,0,0,78.667" 
+                     HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                     Width="25" Height="25"
+                     Fill="#CCCCCC" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,100.625,104.375,0"
+                     Fill="#CCCCCC" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="25" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,20,36.875,0" 
+                     HorizontalAlignment="Right" VerticalAlignment="Top" 
+                     Width="25" Height="25"
+                     Fill="#CCCCCC" />
 
-            <Ellipse Margin="0,0,96,65" HorizontalAlignment="Right" Width="25" 
-                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="24" VerticalAlignment="Bottom" />
-            
-            <Ellipse Margin="95,0,0,45" HorizontalAlignment="Left" Width="24" 
-                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="24" VerticalAlignment="Bottom" />
-
-            <Ellipse Margin="123.251,123.334,0,0" HorizontalAlignment="Left" Width="23.833" 
-                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="23.833" VerticalAlignment="Top" Fill="#EECFCFCF" />
-            
-            <Ellipse Margin="56.917,0,0,84.333" HorizontalAlignment="Left" Width="23.833" 
-                     Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3" Height="23.833" VerticalAlignment="Bottom" Fill="#EECFCFCF" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,0,17.5,45.625" 
+                     HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                     Width="25" Height="25"
+                     Fill="#FFFFFF" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,0,105.625,65" 
+                     HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                     Width="25" Height="25"
+                     Fill="#FFFFFF" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                Margin="64.375,0,0,26.875" 
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                Width="25" Height="25"
+                Fill="#FFFFFF" />
         </Grid>
     </Viewbox>
 </UserControl>
