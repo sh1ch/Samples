@@ -1,0 +1,79 @@
+﻿<Menu x:Class="RibbonMenuSample.RibbonMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RibbonMenuSample"
+             xmlns:conv="clr-namespace:RibbonMenuSample.ValueConverters"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Menu.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/RibbonMenuSample;component/Themes/ControlColors.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <conv:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+            <Style TargetType="Menu">
+                <Setter Property="Background" Value="{StaticResource RibbonMenu_DefaultColorKey}" />
+            </Style>
+
+            <ControlTemplate x:Key="MainMenu" TargetType="MenuItem">
+                <StackPanel x:Name="Panel" Background="{StaticResource RibbonMenu_DefaultColorKey}">
+                    <Label Content="{TemplateBinding Header}" Margin="6 1"
+                           HorizontalContentAlignment="Center" HorizontalAlignment="Center"
+                           VerticalContentAlignment="Center" VerticalAlignment="Center"
+                           Foreground="White" />
+                    <Popup IsOpen="{TemplateBinding IsSubmenuOpen}" AllowsTransparency="True" Focusable="False"
+                           Placement="Bottom">
+                        <Border BorderThickness="1" Background="White" BorderBrush="#E0E0E0">
+                            <StackPanel IsItemsHost="True" SnapsToDevicePixels="True" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsHighlighted" Value="True">
+                        <Setter TargetName="Panel" Property="Background" Value="{StaticResource RibbonMenu_EnableColorKey}" />
+                        <Setter Property="Cursor" Value="Hand" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="SubMenu" TargetType="MenuItem">
+                <StackPanel x:Name="SubDockPanel" Orientation="Horizontal" MinWidth="120">
+                    <Image Name="IconImage" Width="20" Margin="6 0" 
+                           VerticalAlignment="Center"
+                           Source="{Binding Icon, RelativeSource={RelativeSource TemplatedParent}}" />
+                    <Label Content="{TemplateBinding Header}" Foreground="Black" Margin="0 5 5 5" />
+
+                    <Label HorizontalAlignment="Right" VerticalAlignment="Center"
+                           HorizontalContentAlignment="Right" VerticalContentAlignment="Center"
+                           Visibility="{Binding HasItems, Converter={StaticResource BooleanToVisibilityConverter}, RelativeSource={RelativeSource TemplatedParent}}" 
+                           Content=">" />
+
+                    <Popup IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}" AllowsTransparency="True" 
+                           PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                           Placement="Right">
+                        <Border BorderThickness="1" Background="White" BorderBrush="{StaticResource RibbonSubMenu_DefaultColorKey}">
+                            <StackPanel IsItemsHost="True" SnapsToDevicePixels="True" />
+                        </Border>
+                    </Popup>
+                </StackPanel>
+                <ControlTemplate.Triggers>
+                    <Trigger Property="IsHighlighted" Value="True">
+                        <Setter TargetName="SubDockPanel" Property="Background" Value="{StaticResource RibbonSubMenu_DefaultColorKey}" />
+                    </Trigger>
+                    <Trigger Property="Icon" Value="{x:Null}">
+                        <Setter TargetName="IconImage" Property="Visibility" Value="Hidden" />
+                    </Trigger>
+                </ControlTemplate.Triggers>
+            </ControlTemplate>
+
+            <ControlTemplate x:Key="MenuSeparator" TargetType="Separator">
+                <Border Height="1" Background="#E0E0E0" />
+            </ControlTemplate>
+
+        </ResourceDictionary>
+    </Menu.Resources>
+</Menu>
