@@ -17,7 +17,7 @@
         <Grid Margin="10" Width="280" Height="280">
 
             <Line Stroke="Black" StrokeThickness="10" X1="0" Y1="275" X2="280" Y2="275" />
-            <Line Stroke="Black" StrokeThickness="10" X1="0" Y1="280" X2="0" Y2="0"/>
+            <Line Stroke="Black" StrokeThickness="10" X1="5" Y1="280" X2="5" Y2="0"/>
 
             <Line Stroke="Black" StrokeThickness="6" X1="0" Y1="275" X2="280" Y2="192" RenderTransformOrigin="0,1" />
             <Line Stroke="Black" StrokeThickness="6" X1="0" Y1="275" X2="280" Y2="-40" RenderTransformOrigin="0,1" />
