@@ -1,0 +1,30 @@
+﻿<Window x:Class="DependencyCustomControlSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DependencyCustomControlSample"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance local:MainWindow}"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" SelectionMode="Single"
+                  CanUserResizeRows="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                  ItemsSource="{Binding Records}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto" IsReadOnly="True" MinWidth="50"
+                                    Header="No" Binding="{Binding No}">
+                </DataGridTextColumn>
+
+                <DataGridTemplateColumn Width="Auto" IsReadOnly="True" MinWidth="120" Header="サンプル">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:DataGridCustomTextBoxColumn Text="{Binding Text}" SubText="{Binding SubText}" IsEnabled="{Binding IsEnabled}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
