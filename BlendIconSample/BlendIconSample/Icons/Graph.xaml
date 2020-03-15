@@ -1,0 +1,56 @@
+﻿<UserControl x:Class="BlendIconSample.Icons.Graph"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BlendIconSample.Icons"
+             Name="Control"
+             mc:Ignorable="d" 
+             d:DesignHeight="800" d:DesignWidth="800">
+    <d:DesignerProperties.DesignStyle>
+        <Style TargetType="UserControl">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="Foreground" Value="Black" />
+        </Style>
+    </d:DesignerProperties.DesignStyle>
+    <Viewbox>
+        <Grid Margin="10" Width="280" Height="280">
+
+            <Line Stroke="Black" StrokeThickness="10" X1="0" Y1="275" X2="280" Y2="275" />
+            <Line Stroke="Black" StrokeThickness="10" X1="5" Y1="280" X2="5" Y2="0"/>
+
+            <Line Stroke="Black" StrokeThickness="6" X1="0" Y1="275" X2="280" Y2="192" RenderTransformOrigin="0,1" />
+            <Line Stroke="Black" StrokeThickness="6" X1="0" Y1="275" X2="280" Y2="-40" RenderTransformOrigin="0,1" />
+
+            <Ellipse Stroke="{Binding ElementName=Control, Path=Foreground}" StrokeThickness="3"
+                     Margin="46.25,0,0,78.667" 
+                     HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                     Width="25" Height="25"
+                     Fill="#CCCCCC" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,100.625,104.375,0"
+                     Fill="#CCCCCC" HorizontalAlignment="Right" Height="25" VerticalAlignment="Top" Width="25" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,20,36.875,0" 
+                     HorizontalAlignment="Right" VerticalAlignment="Top" 
+                     Width="25" Height="25"
+                     Fill="#CCCCCC" />
+
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,0,17.5,45.625" 
+                     HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                     Width="25" Height="25"
+                     Fill="#FFFFFF" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                     Margin="0,0,105.625,65" 
+                     HorizontalAlignment="Right" VerticalAlignment="Bottom" 
+                     Width="25" Height="25"
+                     Fill="#FFFFFF" />
+            <Ellipse Stroke="{Binding Foreground, ElementName=Control}" StrokeThickness="3"
+                Margin="64.375,0,0,26.875" 
+                HorizontalAlignment="Left" VerticalAlignment="Bottom" 
+                Width="25" Height="25"
+                Fill="#FFFFFF" />
+        </Grid>
+    </Viewbox>
+</UserControl>
