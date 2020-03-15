@@ -1,0 +1,14 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <SolidColorBrush x:Key="RibbonBorderColorKey">#FF8EBCAF</SolidColorBrush>
+    <SolidColorBrush x:Key="RibbonTabItem_FontColorKey">#FF333333</SolidColorBrush>
+    <SolidColorBrush x:Key="RibbonTabItem_SelectedFontColorKey">#FF48796b</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="RibbonMenu_EnabledColorKey">#FF569281</SolidColorBrush>
+    <SolidColorBrush x:Key="RibbonMenu_DefaultColorKey">#FF396055</SolidColorBrush>
+    <SolidColorBrush x:Key="RibbonSubMenu_HighlightedColorKey">#FFEFF6FC</SolidColorBrush>
+    <SolidColorBrush x:Key="RibbonSubMenu_DefaultColorKey">#FFE0E0E0</SolidColorBrush>
+    
+    
+</ResourceDictionary>

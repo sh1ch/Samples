@@ -1,0 +1,113 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:RibbonMenuSample.Themes">
+
+    <Style x:Key="RibbonButtonStyle" TargetType="{x:Type Button}">
+        <Setter Property="Template" Value="{StaticResource RibbonButtonTemplate}"/>
+    </Style>
+
+    <ControlTemplate x:Key="RibbonButtonTemplate" TargetType="{x:Type Button}">
+        <Border x:Name="ButtonBorder" Padding="{TemplateBinding Padding}" BorderThickness="0">
+            <Border.Background>
+                <LinearGradientBrush StartPoint="0,0.5" EndPoint="1,0">
+                    <GradientStop x:Name="GradientStop1" Color="Transparent" Offset="0.5" />
+                    <GradientStop x:Name="GradientStop2" Color="Transparent" Offset="1" />
+                </LinearGradientBrush>
+            </Border.Background>
+
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="CommonStates">
+                    <!-- 通常時 -->
+                    <VisualState x:Name="Normal">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop1">
+                                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Transparent">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop2">
+                                <EasingColorKeyFrame KeyTime="0:0:0.1" Value="Transparent">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+
+                    <VisualState x:Name="MouseOver">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop1">
+                                <EasingColorKeyFrame KeyTime="0:0:0.03" Value="#EEDFDFDF">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop2">
+                                <EasingColorKeyFrame KeyTime="0:0:0.03" Value="#EEDFDFDF">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+
+                        </Storyboard>
+                    </VisualState>
+
+                    <VisualState x:Name="Pressed">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop1">
+                                <EasingColorKeyFrame KeyTime="0:0:0.0" Value="#EEC8C8C8">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop2">
+                                <EasingColorKeyFrame KeyTime="0:0:0.0" Value="#EEC8C8C8">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+
+                        </Storyboard>
+                    </VisualState>
+
+                    <VisualState x:Name="Disabled">
+                        <Storyboard>
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop1">
+                                <EasingColorKeyFrame KeyTime="0:0:0.0" Value="#EEC8C8C8">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+
+                            <ColorAnimationUsingKeyFrames Storyboard.TargetProperty="Color" Storyboard.TargetName="GradientStop2">
+                                <EasingColorKeyFrame KeyTime="0:0:0.0" Value="#EEC8C8C8">
+                                    <EasingColorKeyFrame.EasingFunction>
+                                        <CubicEase EasingMode="EaseIn" />
+                                    </EasingColorKeyFrame.EasingFunction>
+                                </EasingColorKeyFrame>
+                            </ColorAnimationUsingKeyFrames>
+
+                        </Storyboard>
+                    </VisualState>
+
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+
+            <Grid>
+                <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+            </Grid>
+        </Border>
+    </ControlTemplate>
+
+</ResourceDictionary>
