@@ -1,5 +1,4 @@
-﻿using Codeplex.Data;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -22,6 +21,7 @@ namespace DataGridColumnPositionSaveSample
     /// </summary>
     public partial class MainWindow : Window
     {
+        private string _File = "datagrid.settings.json";
         private MainWindowViewModel _VM = new MainWindowViewModel();
 
         public MainWindow()
@@ -33,42 +33,14 @@ namespace DataGridColumnPositionSaveSample
 
         private void Window_SourceInitialized(object sender, EventArgs e)
         {
-            var text = "";
+            if (!File.Exists(_File)) return;
 
-            if (!File.Exists("datagrid.json")) return;
-
-            using (var reader = new StreamReader("datagrid.json", Encoding.UTF8))
-            {
-                text = reader.ReadToEnd();
-            }
-
-            if (string.IsNullOrEmpty(text)) return;
-
-            var json = DynamicJson.Parse(text);
-            
-            foreach (DataGridParameter param in json)
-            {
-                var column = DataGrid.Columns.SingleOrDefault(p => p.Header.ToString() == param.Header);
-
-                if (column != null)
-                {
-                    column.DisplayIndex = param.DisplayIndex;
-                    column.Width = param.Width;
-                }
-            }
+            DataGridColumnSettings.Load(_File, DataGrid.Columns);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            var columns = DataGrid.Columns
-                .Select(p => new DataGridParameter { Header = p.Header.ToString(), DisplayIndex = p.DisplayIndex, Width = p.ActualWidth });
-
-            var text = DynamicJson.Serialize(columns);
-
-            using (var writer = new StreamWriter("datagrid.json", false, Encoding.UTF8))
-            {
-                writer.Write(text);
-            }
+            DataGridColumnSettings.Save(_File, DataGrid.Columns);
         }
     }
 }
