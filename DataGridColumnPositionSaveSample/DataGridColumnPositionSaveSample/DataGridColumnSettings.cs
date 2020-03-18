@@ -36,7 +36,12 @@ namespace DataGridColumnPositionSaveSample
             // 左端（小さい番号）から順番に設定していく
             foreach (DataGridParameter param in jsonParams.OrderBy(p => p.DisplayIndex))
             {
-                var column = columns.SingleOrDefault(p => p.Header.ToString() == param.Header);
+                if (string.IsNullOrEmpty(param.Tag) || (param.Tag == "null"))
+                {
+                    continue;
+                }
+
+                var column = columns.SingleOrDefault(p => TagBehavior.GetTag(p).ToString() == param.Tag);
 
                 if (column != null)
                 {
@@ -51,7 +56,15 @@ namespace DataGridColumnPositionSaveSample
             if (string.IsNullOrEmpty(filePath)) throw new IOException("指定されたファイルパスに異常があります。");
             if (columns == null) throw new ArgumentNullException("設定するカラムが null です。");
 
-            var columnParams = columns.Select(p => new DataGridParameter { Header = p.Header.ToString(), DisplayIndex = p.DisplayIndex, Width = p.ActualWidth });
+            var columnParams = columns.Select
+                (
+                p => new DataGridParameter
+                    {
+                        Tag = TagBehavior.GetTag(p)?.ToString() ?? "null",
+                        DisplayIndex = p.DisplayIndex, 
+                        Width = p.ActualWidth 
+                    }
+                );
             var text = JsonSerializer.Serialize(columnParams);
 
             using (var writer = new StreamWriter(filePath, false, Encoding.UTF8))

@@ -15,11 +15,16 @@
                   HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
                   ItemsSource="{Binding Records}">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="No" Binding="{Binding No}" IsReadOnly="True" MinWidth="40" />
-                <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" MinWidth="40" />
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" MinWidth="40" />
-                <DataGridTextColumn Header="HP" Binding="{Binding Hp}" IsReadOnly="True" MinWidth="40" />
-                <DataGridTextColumn Header="MP" Binding="{Binding Mp}" IsReadOnly="True" MinWidth="40" />
+                <DataGridTextColumn Header="No" Binding="{Binding No}" IsReadOnly="True" MinWidth="40"
+                                    local:TagBehavior.Tag="No" />
+                <DataGridTextColumn Header="クラス" Binding="{Binding Type}" IsReadOnly="True" MinWidth="40"
+                                    local:TagBehavior.Tag="Type" />
+                <DataGridTextColumn Header="名前" Binding="{Binding Name}" IsReadOnly="True" MinWidth="40"
+                                    local:TagBehavior.Tag="Name" />
+                <DataGridTextColumn Header="HP" Binding="{Binding Hp}" IsReadOnly="True" MinWidth="40"
+                                    local:TagBehavior.Tag="HP" />
+                <DataGridTextColumn Header="MP" Binding="{Binding Mp}" IsReadOnly="True" MinWidth="40"
+                                    local:TagBehavior.Tag="MP" />
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
