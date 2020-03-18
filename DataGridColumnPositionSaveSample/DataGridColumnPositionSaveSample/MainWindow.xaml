@@ -1,0 +1,26 @@
+﻿<Window x:Class="DataGridColumnPositionSaveSample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataGridColumnPositionSaveSample"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="300" Width="400"
+        WindowStartupLocation="CenterScreen"
+        d:DataContext="{d:DesignInstance local:MainWindowViewModel}"
+        Closing="Window_Closing" SourceInitialized="Window_SourceInitialized">
+    <Grid>
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" SelectionMode="Extended"
+                  CanUserResizeRows="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                  ItemsSource="{Binding Records}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="No" Binding="{Binding No}" IsReadOnly="True" MinWidth="40" />
+                <DataGridTextColumn Header="Type" Binding="{Binding Type}" IsReadOnly="True" MinWidth="40" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" IsReadOnly="True" MinWidth="40" />
+                <DataGridTextColumn Header="HP" Binding="{Binding Hp}" IsReadOnly="True" MinWidth="40" />
+                <DataGridTextColumn Header="MP" Binding="{Binding Mp}" IsReadOnly="True" MinWidth="40" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
