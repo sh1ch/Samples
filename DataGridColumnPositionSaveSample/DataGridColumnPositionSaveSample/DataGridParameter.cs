@@ -15,9 +15,9 @@ namespace DataGridColumnPositionSaveSample
         #region Properties
 
         /// <summary>
-        /// 列名を表す（一意の）テキストを取得または設定します。
+        /// 列を区別するテキストを取得または設定します。
         /// </summary>
-        public string Header { get; set; }
+        public string Tag { get; set; }
 
         /// <summary>
         /// 列の表示位置を決める値を取得または設定します。
