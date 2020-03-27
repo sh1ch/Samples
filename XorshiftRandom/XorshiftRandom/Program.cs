@@ -28,26 +28,43 @@ namespace XorshiftRandom
         public void ImageTest()
         {
             var random = new RandomState();
-
-            random.SetSeed(DateTime.Now.Ticks);
+            var seed = DateTime.Now.Ticks;
 
             var width = 640;
             var height = 640;
 
+            var white = 0;
+            var black = 0;
+
             var bmp = new Bitmap(width, height);
+
+            random.SetSeed(seed);
 
             for (var x = 0; x < width; x++)
             {
                 for (var y = 0; y < height; y++)
                 {
+                    Color color;
                     var r = random.Range(0, 1);
-                    var color = r == 0 ? Color.White : Color.Black;
+
+                    if (r == 0)
+                    {
+                        color = Color.White;
+                        white += 1;
+                    }
+                    else
+                    {
+                        color = Color.Black;
+                        black += 1;
+                    }
 
                     bmp.SetPixel(x, y, color);
                 }
             }
 
-            bmp.Save($"image-{DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")}.png", ImageFormat.Png);
+            Console.WriteLine($"white:{white}({white / (double)(white + black) * 100:00.00}%), black:{black}({black / (double)(white + black) * 100:00.00}%), total:{white+black}({width}x{height})");
+
+            bmp.Save($"image-{DateTime.Now.ToString("yyyy-MM-dd HH-mm-ss")} seed({seed}).png", ImageFormat.Png);
         }
 
         public void RangeTest()
