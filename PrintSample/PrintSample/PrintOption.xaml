@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="PrintSample.PrintOption"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:PrintSample"
+             xmlns:local_lang="clr-namespace:PrintSample.Properties"
+             xmlns:hf="clr-namespace:HeritageFramework.Wpf;assembly=HeritageFramework.Wpf"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance local:SampleOption}">
+    <StackPanel Orientation="Vertical">
+        <Label Grid.Row="0" 
+               Foreground="#FF2B579A" FontSize="12"
+               Content="{x:Static local_lang:Resources.PrintPreview_Options}" />
+        <CheckBox Margin="10 5" Content="サンプル１" IsChecked="{Binding Option1}" />
+        <CheckBox Margin="10 5"  Content="サンプル２" IsChecked="{Binding Option2}" />
+
+        <Label Margin="0 5" Content="{Binding ElementName=PageCounter, Path=Value}" ContentStringFormat="{}印刷ページ数 : {0}" />
+
+        <Slider x:Name="PageCounter" 
+                Margin="5 5"
+                TickPlacement="BottomRight"
+                IsSnapToTickEnabled="True"
+                TickFrequency="1" SmallChange="1" LargeChange="1"
+                Minimum="1" Maximum="5"
+                Value="{Binding Pages}"/>
+
+    </StackPanel>
+</UserControl>
