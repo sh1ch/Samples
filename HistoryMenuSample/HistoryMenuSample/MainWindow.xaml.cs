@@ -32,7 +32,7 @@ namespace HistoryMenuSample
 
         private void MenuItem_Initialized(object sender, EventArgs e)
         {
-            var menu = sender as MenuItem;
+            var mainMenu = sender as MenuItem;
             
             this.DataContext = this;
 
@@ -44,13 +44,21 @@ namespace HistoryMenuSample
                 Files.Enqueue(item);
             }
 
-            // メニューの要素を初期化する
-            for (var i = 0; i < _HistorySize; i++)
+            var menus = GetHistoryMenu(_HistorySize);
+
+            foreach(var menu in menus)
+            {
+                mainMenu.Items.Add(menu);
+            }
+        }
+
+        private IEnumerable<MenuItem> GetHistoryMenu(int count)
+        {
+            var menu = new List<MenuItem>();
+
+            for (var i = 0; i < count; i++)
             {
                 var item = new MenuItem();
-
-                item.Tag = i;
-
                 var binding = new Binding();
 
                 binding.Source = this;
@@ -60,15 +68,10 @@ namespace HistoryMenuSample
 
                 item.SetBinding(MenuItem.HeaderProperty, binding);
 
-                item.Click += (s, args) => 
-                {
-                    var selectedItem = s as MenuItem;
-
-                    Console.WriteLine(selectedItem.Tag);
-                };
-
-                menu.Items.Add(item);
+                menu.Add(item);
             }
+
+            return menu;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
