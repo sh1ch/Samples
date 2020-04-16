@@ -15,7 +15,9 @@
         <Menu Grid.Row="0"
               IsMainMenu="True">
             <MenuItem Header="File">
-                <MenuItem Header="最近使用したファイルを開く" Initialized="MenuItem_Initialized" />
+                <MenuItem Header="最近使用したファイルを開く" 
+                          ItemsSource="{Binding Files}"
+                          Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
 
