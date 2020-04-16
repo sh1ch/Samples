@@ -44,10 +44,6 @@ namespace HistoryMenuSample
         {
             var mainMenu = sender as MenuItem;
 
-
-
-
-
             /*
             this.DataContext = this;
 
