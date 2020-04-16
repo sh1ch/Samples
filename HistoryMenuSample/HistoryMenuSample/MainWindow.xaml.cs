@@ -48,6 +48,14 @@ namespace HistoryMenuSample
 
             foreach(var menu in menus)
             {
+                // クリックイベントを追加する例
+                menu.Click += (s, args) =>
+                {
+                    var selectedItem = s as MenuItem;
+
+                    Console.WriteLine(selectedItem.Header);
+                };
+
                 mainMenu.Items.Add(menu);
             }
         }
