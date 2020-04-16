@@ -103,7 +103,7 @@ namespace HistoryMenuSample
         {
             base.Enqueue(item);
 
-            RaiseCollectionChanged(NotifyCollectionChangedAction.Add, item);
+            RaiseCollectionChanged(NotifyCollectionChangedAction.Add, item, Count -1);
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace HistoryMenuSample
         {
             var item = base.Dequeue();
 
-            RaiseCollectionChanged(NotifyCollectionChangedAction.Remove, item);
+            RaiseCollectionChanged(NotifyCollectionChangedAction.Remove, item, 0);
 
             return item;
         }
@@ -139,6 +139,14 @@ namespace HistoryMenuSample
         {
             CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(action, changedItem));
             
+            RaisePropertyChanged(nameof(Count));
+            RaisePropertyChanged("");
+        }
+
+        protected void RaiseCollectionChanged(NotifyCollectionChangedAction action, object changedItem, int index)
+        {
+            CollectionChanged?.Invoke(this, new NotifyCollectionChangedEventArgs(action, changedItem, index));
+
             RaisePropertyChanged(nameof(Count));
             RaisePropertyChanged("");
         }

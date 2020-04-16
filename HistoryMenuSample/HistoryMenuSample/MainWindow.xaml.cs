@@ -28,12 +28,27 @@ namespace HistoryMenuSample
         public MainWindow()
         {
             InitializeComponent();
+
+            this.DataContext = this;
+
+            // データを詰める
+            for (var i = 0; i < _HistorySize; i++)
+            {
+                var item = Properties.Settings.Default.FilePaths[i];
+
+                Files.Enqueue(item);
+            }
         }
 
         private void MenuItem_Initialized(object sender, EventArgs e)
         {
             var mainMenu = sender as MenuItem;
-            
+
+
+
+
+
+            /*
             this.DataContext = this;
 
             // データを詰める
@@ -58,6 +73,7 @@ namespace HistoryMenuSample
 
                 mainMenu.Items.Add(menu);
             }
+            */
         }
 
         private IEnumerable<MenuItem> GetHistoryMenu(int count)
@@ -91,6 +107,12 @@ namespace HistoryMenuSample
             // 履歴を保存
             Properties.Settings.Default.FilePaths = Files.ToStringCollection();
             Properties.Settings.Default.Save();
+        }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+            var menuItem = e.OriginalSource as MenuItem;
+            MessageBox.Show(String.Format($"「{menuItem.Header}」をクリックしました。"));
         }
     }
 }
