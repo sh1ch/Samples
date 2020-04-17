@@ -6,6 +6,9 @@
         xmlns:local="clr-namespace:HistoryMenuSample"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:ReverseConverter x:Key="ReverseConverter" />
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -16,7 +19,7 @@
               IsMainMenu="True">
             <MenuItem Header="File">
                 <MenuItem Header="最近使用したファイルを開く" 
-                          ItemsSource="{Binding Files}"
+                          ItemsSource="{Binding Files, Converter={StaticResource ReverseConverter}}"
                           Click="MenuItem_Click"/>
             </MenuItem>
         </Menu>
