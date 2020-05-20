@@ -25,8 +25,8 @@ namespace FixedDecimalPointTextBoxSample
 
         public ObservableCollection<SampleData> Samples { get; set; } = new ObservableCollection<SampleData>()
         {
-            new SampleData() { Data1 = "23.45" },
-            new SampleData() { Data1 = "34.56" },
+            new SampleData() { Data1 = 23 },
+            new SampleData() { Data1 = 34 },
         };
 
         public MainWindow()

@@ -8,6 +8,6 @@ namespace FixedDecimalPointTextBoxSample
 {
     public class SampleData
     {
-        public string Data1 { get; set; }
+        public double Data1 { get; set; }
     }
 }

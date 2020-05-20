@@ -27,7 +27,7 @@
                 <DataGridTemplateColumn Width="80" Header="テスト">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <local:FixedDecimalPointTextBox Text="{Binding Data1, Mode=TwoWay}" SubText="ms" />
+                            <local:FixedDecimalPointTextBox Text="{Binding Data1, Mode=TwoWay}" SubText="ms" HorizontalContentAlignment="Right" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

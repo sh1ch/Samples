@@ -59,10 +59,7 @@ namespace FixedDecimalPointTextBoxSample
 
         #region Public Methods
 
-        public bool CanExecute(object parameter)
-        {
-            return true;
-        }
+        public bool CanExecute(object parameter) => _CanExecute?.Invoke() ?? true;
 
         public void Execute(object parameter) => _Execute();
 
