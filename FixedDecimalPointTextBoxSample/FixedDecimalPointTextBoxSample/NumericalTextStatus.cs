@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -117,6 +118,48 @@ namespace FixedDecimalPointTextBoxSample
         #endregion
 
         #region Public Methods
+
+        public string SetDecimals(int length)
+        {
+            var tail = "";
+
+            if (length == 0)
+            {
+                if (HasDecimal)
+                {
+                    Raw = Raw.Substring(0, Raw.IndexOf('.'));
+                    return Raw;
+                }
+            }
+
+            if (!HasDecimal)
+            {
+                // 小数を持たない
+                tail += ".";
+                tail += string.Concat(Enumerable.Repeat("0", length));
+
+                Raw += tail;
+
+                return Raw;
+            }
+            else
+            {
+                // 小数を持つ
+                if (length == DecimalPartText.Length) return Raw;
+
+                if (length > DecimalPartText.Length)
+                {
+                    tail += string.Concat(Enumerable.Repeat("0", length - DecimalPartText.Length));
+                    Raw += tail;
+                }
+                else if(length < DecimalPartText.Length)
+                {
+                    Raw = Raw.Substring(0, Raw.Length - (DecimalPartText.Length - length));
+                }
+            }
+
+            return Raw;
+        }
 
         public string Delete(int index)
         {

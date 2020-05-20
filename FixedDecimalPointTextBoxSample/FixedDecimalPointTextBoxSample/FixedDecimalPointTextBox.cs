@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,14 @@ namespace FixedDecimalPointTextBoxSample
                 nameof(Decimals),
                 typeof(int),
                 typeof(FixedDecimalPointTextBox),
-                new PropertyMetadata(2)
+                new PropertyMetadata(2, (sender, e) => 
+                {
+                    var textbox = sender as FixedDecimalPointTextBox;
+
+                    if (textbox == null) return;
+
+                    textbox.AdjustDecimals(textbox);
+                })
             );
 
         /// <summary>
@@ -161,6 +169,15 @@ namespace FixedDecimalPointTextBoxSample
 
                 e.Handled = isHandled;
             };
+
+            TextChanged += (sender, e) =>
+            {
+                var textbox = e.Source as TextBox;
+
+                if (textbox == null) return;
+
+                AdjustDecimals(textbox);
+            };
         }
 
         private void Input(TextBox textbox, Key key, ref bool isHandled)
@@ -252,6 +269,21 @@ namespace FixedDecimalPointTextBoxSample
             }
 
             isHandled = true;
+        }
+
+        public void AdjustDecimals(TextBox textbox)
+        {
+            var textStatus = new NumericalTextStatus(textbox.Text);
+
+            // 小数部を持っているか
+            if (Decimals > 0)
+            {
+                if (!textStatus.HasDecimal || textStatus.DecimalPartText.Length != Decimals)
+                {
+                    var newText = textStatus.SetDecimals(Decimals);
+                    textbox.Text = newText;
+                }
+            }
         }
 
         private int GetKeyValue(Key key)
