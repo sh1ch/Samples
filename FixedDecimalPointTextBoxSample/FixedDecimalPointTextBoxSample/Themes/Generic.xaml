@@ -1,0 +1,77 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:FixedDecimalPointTextBoxSample">
+
+    <local:BoolToVisibilityConverter x:Key="BoolToVisibilityConverter" />
+
+    <Style x:Key="FixedDecimalPointTextBoxDefaultStyle" TargetType="{x:Type local:FixedDecimalPointTextBox}">
+        <!--
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        -->
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="None" />
+        <Setter Property="InputMethod.IsInputMethodEnabled" Value="False" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="MinWidth" Value="40" />
+        <Setter Property="MinHeight" Value="20" />
+        <Setter Property="AllowDrop" Value="true" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:FixedDecimalPointTextBox}">
+                    <Border x:Name="MainBorder" Padding="2" 
+                            BorderThickness="1" BorderBrush="Transparent"
+                            Background="{TemplateBinding Background}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Grid.Column="0" Margin="0"
+                                          FontFamily="Courier New" FontSize="15"
+                                          TextOptions.TextFormattingMode="Display" 
+                                          TextOptions.TextRenderingMode="ClearType">
+                            </ScrollViewer>
+                            <TextBlock x:Name="SubTextBlock"
+                                       Grid.Column="1"
+                                       HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                                       Margin="0 0 1 1" 
+                                       Text="{TemplateBinding SubText}"
+                                       FontSize="8" Foreground="#FF666666"
+                                       Visibility="{TemplateBinding IsEnabled, Converter={StaticResource BoolToVisibilityConverter}}" />
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="White" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="White" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource DisabledControlLightColor}" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{StaticResource DisabledControlLightColor}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledFontLightColor}" />
+                        </Trigger>
+                        <!--
+                        <Trigger Property="IsReadOnly" Value="True">
+                            <Setter TargetName="MainBorder" Property="Background" Value="{StaticResource DisabledControlLightColor}" />
+                            <Setter TargetName="MainBorder" Property="BorderBrush" Value="{StaticResource DisabledControlLightColor}" />
+                            <Setter Property="Foreground" Value="{StaticResource DisabledFontLightColor}" />
+                        </Trigger>
+                        -->
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type local:FixedDecimalPointTextBox}" BasedOn="{StaticResource FixedDecimalPointTextBoxDefaultStyle}" />
+
+</ResourceDictionary>
