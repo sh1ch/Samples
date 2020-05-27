@@ -58,7 +58,7 @@ namespace ZipFileTest
             else
             {
                 // エントリーを更新する
-                UpdateMap();
+                UpdateCache();
             }
         }
 
@@ -98,43 +98,6 @@ namespace ZipFileTest
         }
 
         /// <summary>
-        /// 指定したエントリーのデータを追加します。
-        /// </summary>
-        /// <param name="entryName">エントリーの相対パスを表すテキスト。</param>
-        /// <param name="text">エントリーのデータ。</param>
-        /// <param name="overwrite">エントリーの内容を上書きするかどうかを示す値。</param>
-        public void Write(string entryName, string text, bool overwrite = false)
-        {
-            var beforeText = "";
-
-            if (Exists(entryName, true))
-            {
-                if (overwrite == false) throw new System.IO.IOException("すでに同じ名前のファイル、または、フォルダーが存在しています。");
-
-                beforeText = ReadToEnd(entryName);
-
-                Delete(entryName);
-            }
-
-            using (var zip = ZipFile.Open(Path, ZipArchiveMode.Update))
-            {
-                var newFile = zip.CreateEntry(entryName);
-
-                using (var writer = new StreamWriter(newFile.Open(), System.Text.Encoding.UTF8))
-                {
-                    if (!string.IsNullOrEmpty(beforeText))
-                    {
-                        writer.Write(beforeText);
-                    }
-
-                    writer.Write(text);
-                }
-            }
-
-            UpdateCache();
-        }
-
-        /// <summary>
         /// 指定した名前のディレクトリ―を、ZIP ファイル内に追加します。
         /// </summary>
         /// <param name="directoryName">追加するディレクトリーの名前。</param>
@@ -159,12 +122,73 @@ namespace ZipFileTest
         }
 
         /// <summary>
+        /// 指定したエントリーのデータを追加します。
+        /// </summary>
+        /// <param name="entryName">エントリーの相対パスを表すテキスト。</param>
+        /// <param name="text">エントリーのデータ。</param>
+        /// <param name="overwrite">エントリーの内容を上書きするかどうかを示す値。</param>
+        public void Write(string entryName, string text, bool overwrite = false)
+        {
+            Write(entryName, text, Level, overwrite);
+        }
+
+        /// <summary>
+        /// 指定したエントリーのデータを追加します。
+        /// </summary>
+        /// <param name="entryName">エントリーの相対パスを表すテキスト。</param>
+        /// <param name="text">エントリーのデータ。</param>
+        /// <param name="level">圧縮方法。</param>
+        /// <param name="overwrite">エントリーの内容を上書きするかどうかを示す値。</param>
+        public void Write(string entryName, string text, CompressionLevel level, bool overwrite = false)
+        {
+            var beforeText = "";
+
+            if (Exists(entryName, true))
+            {
+                if (overwrite == false) throw new System.IO.IOException("すでに同じ名前のファイル、または、フォルダーが存在しています。");
+
+                beforeText = ReadToEnd(entryName);
+
+                Delete(entryName);
+            }
+
+            using (var zip = ZipFile.Open(Path, ZipArchiveMode.Update))
+            {
+                var newFile = zip.CreateEntry(entryName, level);
+
+                using (var writer = new StreamWriter(newFile.Open(), System.Text.Encoding.UTF8))
+                {
+                    if (!string.IsNullOrEmpty(beforeText))
+                    {
+                        writer.Write(beforeText);
+                    }
+
+                    writer.Write(text);
+                }
+            }
+
+            UpdateCache();
+        }
+
+        /// <summary>
         /// 指定したエントリーのデータを追加し、続けて終端文字を追加します。
         /// </summary>
         /// <param name="entryName">エントリーの相対パスを表すテキスト。</param>
         /// <param name="text">エントリーのデータ。</param>
         /// <param name="overwrite">エントリーの内容を上書きするかどうかを示す値。</param>
         public void WriteLine(string entryName, string text, bool overwrite = false)
+        {
+            WriteLine(entryName, text, Level, overwrite);
+        }
+
+        /// <summary>
+        /// 指定したエントリーのデータを追加し、続けて終端文字を追加します。
+        /// </summary>
+        /// <param name="entryName">エントリーの相対パスを表すテキスト。</param>
+        /// <param name="text">エントリーのデータ。</param>
+        /// <param name="level">圧縮方法。</param>
+        /// <param name="overwrite">エントリーの内容を上書きするかどうかを示す値。</param>
+        public void WriteLine(string entryName, string text, CompressionLevel level, bool overwrite = false)
         {
             var beforeText = "";
 
@@ -179,7 +203,7 @@ namespace ZipFileTest
 
             using (var zip = ZipFile.Open(Path, ZipArchiveMode.Update))
             {
-                var newFile = zip.CreateEntry(entryName, CompressionLevel.Fastest);
+                var newFile = zip.CreateEntry(entryName, level);
 
                 using (var writer = new StreamWriter(newFile.Open(), System.Text.Encoding.UTF8))
                 {
