@@ -1,0 +1,30 @@
+﻿<Window x:Class="DataGridCustomCheckBoxTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataGridCustomCheckBoxTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="200" Width="400">
+    <Grid>
+        <DataGrid AutoGenerateColumns="False" SelectionMode="Extended"
+                  CanUserResizeRows="False" CanUserSortColumns="False" CanUserDeleteRows="False" CanUserAddRows="False"
+                  HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Visible"
+                  ItemsSource="{Binding Samples}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Width="Auto" MinWidth="50" Header="ID" Binding="{Binding No}" />
+                <DataGridTextColumn Width="Auto" MinWidth="100" Header="テキスト" Binding="{Binding Text}" />
+
+                <DataGridTemplateColumn Width="Auto" MinWidth="150"
+                                        Header="カスタムチェックボックス">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <local:TwoCheckBox IsChecked1="{Binding Data1, UpdateSourceTrigger=PropertyChanged}" 
+                                               IsChecked2="{Binding Data2, UpdateSourceTrigger=PropertyChanged}" />
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
