@@ -42,10 +42,6 @@ namespace DisposableTest
 
         #endregion
 
-        #region Events
-
-        #endregion
-
         #region Public Methods
 
         /// <summary>
