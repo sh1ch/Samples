@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30523.141
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TextJsonNaN", "TextJsonNaN\TextJsonNaN.csproj", "{A10D9353-DAD0-4AE7-8771-7174E46E19ED}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A10D9353-DAD0-4AE7-8771-7174E46E19ED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A10D9353-DAD0-4AE7-8771-7174E46E19ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A10D9353-DAD0-4AE7-8771-7174E46E19ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A10D9353-DAD0-4AE7-8771-7174E46E19ED}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {CBFDA790-E8FC-41EC-8135-E01D85599E8B}
+	EndGlobalSection
+EndGlobal

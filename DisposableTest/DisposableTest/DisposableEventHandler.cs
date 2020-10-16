@@ -144,7 +144,7 @@ namespace DisposableTest
             var disposable = Disposable.Create(() =>
             {
                 // Console.WriteLine($"{handler} の購読を解除します。");
-
+                
                 Handler -= handler;
             });
 
