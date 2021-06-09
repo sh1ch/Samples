@@ -1,0 +1,12 @@
+BITMAPINFO
+BITMAPINFOHEADER
+
+BitBlt
+CreateCompatibleDC
+CreateDIBSection
+FindWindow
+GetClientRect
+GetWindowDC
+MapWindowPoints
+ReleaseDC
+SelectObject
