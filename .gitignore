@@ -330,3 +330,6 @@ ModelManifest.xml
 /sqlcipher
 /ReactiveExtensionTest
 /XAMLIslandSample
+/BleTest
+/CoreAudioTest
+/NekoxyTest
