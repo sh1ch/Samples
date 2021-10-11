@@ -9,6 +9,7 @@ using static di_sample1.Sample1;
 
 namespace di_sample1
 {
+    // http://blogs.wankuma.com/nakamura/archive/2008/10/28/160029.aspx
     class Sample2
     {
         public interface IMasterManager
@@ -49,6 +50,14 @@ namespace di_sample1
             Console.WriteLine(manager1.Read().DataSetName);
             Console.WriteLine(manager2.Read().DataSetName);
             Console.WriteLine(manager3.Read().DataSetName);
+
+            // 1, 2 だけ
+            var managers = container.ResolveAll<IMasterManager>();
+
+            foreach (var manager in managers)
+            {
+                Console.WriteLine(manager.Read().DataSetName);
+            }
         }
     }
 }
