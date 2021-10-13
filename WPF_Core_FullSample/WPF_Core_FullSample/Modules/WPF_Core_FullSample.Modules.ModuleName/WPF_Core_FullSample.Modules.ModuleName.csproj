@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <AssemblyName>WPF_Core_FullSample.Modules.ModuleName</AssemblyName>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Prism.Wpf" Version="8.0.0.1909" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\WPF_Core_FullSample.Core\WPF_Core_FullSample.Core.csproj" />
+    <ProjectReference Include="..\..\Services\WPF_Core_FullSample.Services.Interfaces\WPF_Core_FullSample.Services.Interfaces.csproj" />
+  </ItemGroup>
+</Project>
