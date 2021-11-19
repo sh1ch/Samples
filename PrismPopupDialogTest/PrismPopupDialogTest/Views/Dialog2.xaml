@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="PrismPopupDialogTest.Views.Dialog2"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:v="clr-namespace:PrismPopupDialogTest.Views"
+             xmlns:vm="clr-namespace:PrismPopupDialogTest.ViewModels"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DesignHeight="200" d:DesignWidth="200" 
+             MinWidth="200" MinHeight="200">
+    <prism:Dialog.WindowStyle>
+        <Style TargetType="Window">
+            <Setter Property="prism:Dialog.WindowStartupLocation" Value="CenterOwner" />
+            <Setter Property="WindowStyle" Value="ToolWindow" />
+            <Setter Property="ResizeMode" Value="NoResize"/>
+            <Setter Property="ShowInTaskbar" Value="False"/>
+            <Setter Property="SizeToContent" Value="WidthAndHeight"/>
+        </Style>
+    </prism:Dialog.WindowStyle>
+    <Grid>
+        <v:Dialog1 DataContext="{Binding .}" />
+    </Grid>
+</UserControl>

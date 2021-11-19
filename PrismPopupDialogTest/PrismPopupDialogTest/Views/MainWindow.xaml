@@ -1,0 +1,25 @@
+﻿<Window x:Class="PrismPopupDialogTest.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:prism="http://prismlibrary.com/"
+        xmlns:v="clr-namespace:PrismPopupDialogTest.Views"
+        xmlns:vm="clr-namespace:PrismPopupDialogTest.ViewModels"
+        prism:ViewModelLocator.AutoWireViewModel="True"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance vm:MainWindowViewModel}"
+        Title="{Binding Title}" Height="300" Width="400">
+    <StackPanel HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Orientation="Vertical">
+        <TextBlock HorizontalAlignment="Center"
+                   Text="{Binding SampleValue, StringFormat=サンプル値 : {0}}" />
+        <Button Margin="10" Padding="6"
+                Content="Popup Dialog1"
+                Command="{Binding PopupDialog1Command}" />
+        <Button Margin="10" Padding="6"
+                Content="Popup Dialog2"
+                Command="{Binding PopupDialog2Command}" />
+    </StackPanel>
+</Window>
