@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="PrismPopupDialogTest.Views.Dialog1"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="http://prismlibrary.com/"
+             xmlns:v="clr-namespace:PrismPopupDialogTest.Views"
+             xmlns:vm="clr-namespace:PrismPopupDialogTest.ViewModels"
+             prism:ViewModelLocator.AutoWireViewModel="True"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance vm:Dialog1ViewModel}"
+             d:DesignHeight="200" d:DesignWidth="200" 
+             MinWidth="200" MinHeight="200">
+    <StackPanel Orientation="Vertical"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+        <TextBlock Margin="10" Text="{Binding Sample1}" />
+        <TextBlock Margin="10" Text="{Binding Sample2}" />
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Button Margin="10" Padding="6"
+                    Content="↓"
+                    Command="{Binding DownValueCommand}" />
+            <TextBlock Margin="10"
+                       VerticalAlignment="Center"
+                       Text="{Binding Sample3}" />
+            <Button Margin="10" Padding="6"
+                    Content="↑"
+                    Command="{Binding UpValueCommand}" />
+        </StackPanel>
+        <Button Margin="10" Padding="6"
+                MinWidth="120"
+                Content="Close"
+                Command="{Binding CloseCommand}" />
+    </StackPanel>
+</UserControl>
