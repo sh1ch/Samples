@@ -20,6 +20,7 @@
         <TextBox Grid.Row="0" 
                  x:Name="SpeechText" 
                  AcceptsReturn="True"
+                 TextWrapping="Wrap"
                  Text="こんにちは、コルタナと申します。"
                  Padding="6 10" />
         <Grid Grid.Row="1" Margin="10">
