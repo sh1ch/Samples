@@ -13,13 +13,13 @@ public class Tests
     [Test]
     public void Test_Action()
     {
-        Assert.ThrowsAsync<Exception>(() => Retry.InvokeAsync(TestAction));
+        Assert.ThrowsAsync<AggregateException>(() => Retry.InvokeAsync(TestAction));
     }
 
     [Test]
     public void Test_Func()
     {
-        Assert.ThrowsAsync<Exception>(() => Retry.InvokeAsync(TestFunc));
+        Assert.ThrowsAsync<AggregateException>(() => Retry.InvokeAsync(TestFunc));
     }
 
     public void TestAction()
