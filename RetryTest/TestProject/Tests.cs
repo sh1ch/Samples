@@ -1,6 +1,8 @@
 using NUnit.Framework;
 using RetryTest;
 using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace TestProject;
 public class Tests
@@ -11,9 +13,16 @@ public class Tests
     }
 
     [Test]
-    public void Test_Action()
+    public async Task Test_Action()
     {
-        Assert.ThrowsAsync<AggregateException>(() => Retry.InvokeAsync(TestAction));
+        try
+        {
+            await Retry.InvokeAsync(TestAction);
+        }
+        catch (AggregateException e)
+        {
+            Assert.AreEqual(e.Flatten().InnerExceptions.Where(p => p is Exception).Count(), 4);
+        }
     }
 
     [Test]
