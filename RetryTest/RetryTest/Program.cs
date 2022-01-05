@@ -38,7 +38,7 @@ public class Program
     {
         Console.WriteLine("Test action called.");
 
-        throw new Exception();
+        throw new Exception("Test Exception");
     }
 }
 
@@ -71,6 +71,8 @@ public class Retry
                                 [CallerFilePath] string sourceFilePath = "",
                                 [CallerLineNumber] int sourceLineNumber = 0)
     {
+        var aggregates = new List<Exception>();
+
         while (true)
         {
             try
@@ -86,10 +88,22 @@ public class Retry
             }
             catch (Exception ex)
             {
+                if (ex is AggregateException aggregate)
+                {
+                    for (int i = 0; i < aggregate.InnerExceptions.Count; i++)
+                    {
+                        aggregates.Add(aggregate.InnerExceptions[i]);
+                    }
+                }
+                else
+                {
+                    aggregates.Add(ex);
+                }
+
                 if (--attempts <= 0)
                 {
-                    Debug.WriteLine($"{ex.GetType()} caught: could not invoke. caller: {memberName} - {sourceFilePath} ({sourceLineNumber})");
-                    throw;
+                    Debug.WriteLine($"could not invoke. caller: {memberName} - {sourceFilePath} ({sourceLineNumber})");
+                    throw new AggregateException(aggregates);
                 }
 
                 Debug.WriteLine($"{ex.GetType()} caught: retry after {sleepMilliseconds} ms (left try: {attempts})");
@@ -105,6 +119,8 @@ public class Retry
                              [CallerFilePath] string sourceFilePath = "", 
                              [CallerLineNumber] int sourceLineNumber = 0)
     {
+        var aggregates = new List<Exception>();
+
         while (true)
         {
             try
@@ -119,10 +135,22 @@ public class Retry
             }
             catch (Exception ex)
             {
+                if (ex is AggregateException aggregate)
+                {
+                    for (int i = 0; i < aggregate.InnerExceptions.Count; i++)
+                    {
+                        aggregates.Add(aggregate.InnerExceptions[i]);
+                    }
+                }
+                else 
+                {
+                    aggregates.Add(ex);
+                }
+
                 if (--attempts <= 0)
                 {
-                    Debug.WriteLine($"{ex.GetType()} caught: could not invoke. caller: {memberName} - {sourceFilePath} ({sourceLineNumber})");
-                    throw;
+                    Debug.WriteLine($"could not invoke. caller: {memberName} - {sourceFilePath} ({sourceLineNumber})");
+                    throw new AggregateException(aggregates);
                 }
 
                 Debug.WriteLine($"{ex.GetType()} caught: retry after {sleepMilliseconds} ms (left try: {attempts})");
