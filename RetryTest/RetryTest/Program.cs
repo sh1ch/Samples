@@ -82,6 +82,7 @@ public class Retry
                 lock (_Locker)
                 {
                     result = Task.Run(() => func());
+                    result.Wait();
                 }
 
                 return result.Result;
