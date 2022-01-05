@@ -26,9 +26,9 @@ public class Program
 
             Console.WriteLine("Wait ended.");
         }
-        catch
+        catch (Exception ex)
         {
-            Console.WriteLine("task has error.");
+            Console.WriteLine($"task has error. {ex.Message}");
         }
 
         Console.ReadLine();
@@ -75,14 +75,14 @@ public class Retry
         {
             try
             {
-                T? result;
+                Task<T> result;
 
                 lock (_Locker)
                 {
-                    result = func();
+                    result = Task.Run(() => func());
                 }
 
-                return result;
+                return result.Result;
             }
             catch (Exception ex)
             {
@@ -111,7 +111,8 @@ public class Retry
             {
                 lock (_Locker)
                 {
-                     action();
+                    var task = Task.Run(() => action());
+                    task.Wait();
                 }
 
                 break;
