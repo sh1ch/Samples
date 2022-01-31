@@ -9,7 +9,15 @@
 
   <ItemGroup>
     <PackageReference Include="DotNetEnv" Version="2.3.0" />
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="MySql.Data" Version="8.0.28" />
+    <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.28" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="C:\Users\isoguchi.JSL\.nuget\packages\mysql.data.entityframework\8.0.28\contentFiles\any\netstandard2.1\app.config.transform">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
