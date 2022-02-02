@@ -39,7 +39,7 @@ public class Program
         // EF
         MySqlContext.ConnectionString = connectionString;
 
-        //InsertEF();
+        InsertEF();
         InsertUsingTransaction(true);
         UpdateEF();
         SelectEF();
