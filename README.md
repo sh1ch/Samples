@@ -11,6 +11,9 @@
 git clone https://github.com/sh1ch/Samples.git
 ```
 
+ライセンスに関わらず、悪用を目的とした利用を禁止します。
+趣味の範囲で公開しているデータですので、良識の範囲でご利用ください。
+
 # Author
 
 sh1ch
