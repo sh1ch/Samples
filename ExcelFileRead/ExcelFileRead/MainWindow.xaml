@@ -1,0 +1,37 @@
+﻿<Window x:Class="ExcelFileRead.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ExcelFileRead"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <StackPanel Orientation="Vertical" Margin="20">
+        <StackPanel Orientation="Horizontal">
+            <Label Content="読み込みファイル :" MinWidth="140" />
+            <TextBox x:Name="FilePath"
+                     Padding="6"
+                     MinWidth="400"
+                     VerticalContentAlignment="Center" />
+            <Button Content="..." Click="Button_Click_1" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="読み込みセル :" MinWidth="140" />
+            <TextBox x:Name="CellAddress" 
+                     Padding="6"
+                     MinWidth="80"
+                     Text="A1"
+                     VerticalContentAlignment="Center" />
+            <Label Content="※ A1 のような形式で指定してください" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal">
+            <Label Content="読み込み結果 :" MinWidth="140" />
+            <Label x:Name="Result" 
+                   VerticalContentAlignment="Center" />
+        </StackPanel>
+        <Button Margin="10" Padding="10"
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                Content="読み込み"
+                Click="Button_Click"/>
+    </StackPanel>
+</Window>
