@@ -1,4 +1,5 @@
 [![CodeFactor](https://www.codefactor.io/repository/github/sh1ch/samples/badge)](https://www.codefactor.io/repository/github/sh1ch/samples)
+![GitHub repo size](https://img.shields.io/github/repo-size/sh1ch/Samples)
 
 # Samples
 
