@@ -1,3 +1,5 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/sh1ch/samples/badge)](https://www.codefactor.io/repository/github/sh1ch/samples)
+
 # Samples
 
  公開しているサンプル集（sample collections）
