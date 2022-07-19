@@ -1,18 +1,24 @@
+[![CodeFactor](https://www.codefactor.io/repository/github/sh1ch/samples/badge)](https://www.codefactor.io/repository/github/sh1ch/samples)
+![GitHub repo size](https://img.shields.io/github/repo-size/sh1ch/Samples)
+
 # Samples
 
  公開しているサンプル集（sample collections）
 
-# Note
+> **Note**  
+> ブログで公開したサンプルなどをまとめています。自由に再利用可能です。
 
-ブログで公開したサンプルなどをまとめています。自由に再利用可能です。
-利用により発生した損害全てに対し、いかなる責任をも負えません。詳細はライセンスをご確認ください。
+> **Warning**  
+> 利用により発生した損害全てに対し、いかなる責任をも負えません。詳細はライセンスをご確認ください。
+
+# Git
 
 ```bash
 git clone https://github.com/sh1ch/Samples.git
 ```
 
-ライセンスに関わらず、悪用を目的とした利用を禁止します。
-趣味の範囲で公開しているデータですので、良識の範囲でご利用ください。
+- [x] ライセンスに関わらず、悪用を目的とした利用を禁止します。
+- [x] 趣味の範囲で公開しているデータですので、良識の範囲でご利用ください。
 
 # Author
 
