@@ -13,6 +13,9 @@ public class BoolByteShare
 {
     private bool[] _Bools = new bool[8];
 
+    /// <summary>
+    /// <see cref="byte"/> 型のデータを取得または設定します。
+    /// </summary>
     public byte Byte
     {
         get
@@ -33,6 +36,51 @@ public class BoolByteShare
         set
         {
             var bools = ToBools(value);
+
+            Bool1 = bools[0];
+            Bool2 = bools[1];
+            Bool3 = bools[2];
+            Bool4 = bools[3];
+            Bool5 = bools[4];
+            Bool6 = bools[5];
+            Bool7 = bools[6];
+            Bool8 = bools[7];
+        }
+    }
+
+    /// <summary>
+    /// <see cref="Byte"/> と同じデータを表す <see cref="bool"/> 型の配列を取得または設定します。
+    /// </summary>
+    public bool[] Bools
+    {
+        get
+        {
+            var bools = new bool[8];
+
+            bools[0] = Bool1;
+            bools[1] = Bool2;
+            bools[2] = Bool3;
+            bools[3] = Bool4;
+            bools[4] = Bool5;
+            bools[5] = Bool6;
+            bools[6] = Bool7;
+            bools[7] = Bool8;
+
+            return bools;
+        }
+        set
+        {
+            if (value == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            if (value.Length != 8)
+            {
+                throw new ArgumentOutOfRangeException();
+            }
+
+            var bools = value;
 
             Bool1 = bools[0];
             Bool2 = bools[1];
