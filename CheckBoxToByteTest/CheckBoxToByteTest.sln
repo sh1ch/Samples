@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.3.32819.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CheckBoxToByteTest", "CheckBoxToByteTest\CheckBoxToByteTest.csproj", "{102BB910-2DBB-4ABF-A58F-AB774DDB0FBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{102BB910-2DBB-4ABF-A58F-AB774DDB0FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{102BB910-2DBB-4ABF-A58F-AB774DDB0FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{102BB910-2DBB-4ABF-A58F-AB774DDB0FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{102BB910-2DBB-4ABF-A58F-AB774DDB0FBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6E746F2D-025D-4E9F-A40A-CCA0F4768B34}
+	EndGlobalSection
+EndGlobal
