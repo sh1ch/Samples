@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace CheckBoxToByteTest;
+
 /// <summary>
 /// <see cref="BoolByteShare"/> クラスは、<see cref="bool[]"/> 型と <see cref="byte"/> 型のデータで値を共有するクラスです。
 /// </summary>
