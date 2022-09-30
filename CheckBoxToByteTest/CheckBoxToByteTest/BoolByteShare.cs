@@ -20,16 +20,7 @@ public class BoolByteShare
     {
         get
         {
-            var bools = new bool[8];
-
-            bools[0] = Bool1;
-            bools[1] = Bool2;
-            bools[2] = Bool3;
-            bools[3] = Bool4;
-            bools[4] = Bool5;
-            bools[5] = Bool6;
-            bools[6] = Bool7;
-            bools[7] = Bool8;
+            var bools = Bools;
 
             return ToByte(bools);
         }
@@ -37,14 +28,7 @@ public class BoolByteShare
         {
             var bools = ToBools(value);
 
-            Bool1 = bools[0];
-            Bool2 = bools[1];
-            Bool3 = bools[2];
-            Bool4 = bools[3];
-            Bool5 = bools[4];
-            Bool6 = bools[5];
-            Bool7 = bools[6];
-            Bool8 = bools[7];
+            Bools = bools;
         }
     }
 
