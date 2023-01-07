@@ -21,6 +21,6 @@ public class SampleLayoutRenderer : LayoutRenderer
 
     protected override void Append(StringBuilder builder, LogEventInfo logEvent)
     {
-        builder.Append($"sample={Default} and Op1={Option1 ?? "null"} P2={Option2 ?? "null"} ");
+        builder.Append($"sample={Default} and Op1={Option1 ?? "null"} OP2={Option2 ?? "null"} ");
     }
 }
