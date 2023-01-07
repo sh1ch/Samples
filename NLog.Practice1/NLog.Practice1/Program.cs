@@ -2,9 +2,12 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NLog;
+using NLog.Config;
 using NLog.Extensions.Logging;
 using NLog.Practice1;
+using NLog.Practice1.Sample;
 using System;
+using System.Xml.Linq;
 
 namespace Nlog.Practice1;
 
@@ -12,6 +15,9 @@ internal class Program
 {
     static void Main(string[] args)
     {
+        ConfigurationItemFactory.Default.LayoutRenderers.RegisterDefinition("sample", typeof(SampleLayoutRenderer));
+        ConfigurationItemFactory.Default.Targets.RegisterDefinition("sample2", typeof(SampleTargetWithLayout));
+
         //Test1();
         //Test2();
         //Test3();
