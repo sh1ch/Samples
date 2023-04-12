@@ -1,0 +1,16 @@
+﻿<Window x:Class="EventOrderTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EventOrderTest"
+        xmlns:local_at="clr-namespace:EventOrderTest.Attached"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800"
+        Initialized="Window_Initialized"
+        local_at:Initialized.Command="{Binding InitializedCommand}"
+        local_at:Loaded.Command="{Binding LoadedCommand}"
+        local_at:ContentRendered.Command="{Binding ContentRenderedCommand}">
+    <Grid>
+    </Grid>
+</Window>
