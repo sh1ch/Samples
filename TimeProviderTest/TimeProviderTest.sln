@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeProviderTest", "TimeProviderTest\TimeProviderTest.csproj", "{DB66B5DB-1D65-48A4-88AA-50516EAE10B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestProject", "TestProject\TestProject.csproj", "{5BD31C1D-8A09-4830-A5FD-9B931BF9B92C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{DB66B5DB-1D65-48A4-88AA-50516EAE10B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB66B5DB-1D65-48A4-88AA-50516EAE10B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB66B5DB-1D65-48A4-88AA-50516EAE10B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB66B5DB-1D65-48A4-88AA-50516EAE10B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5BD31C1D-8A09-4830-A5FD-9B931BF9B92C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BD31C1D-8A09-4830-A5FD-9B931BF9B92C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5BD31C1D-8A09-4830-A5FD-9B931BF9B92C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5BD31C1D-8A09-4830-A5FD-9B931BF9B92C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6F0A1C4D-1D86-4CEB-900A-C2D8801EDC0C}
+	EndGlobalSection
+EndGlobal
