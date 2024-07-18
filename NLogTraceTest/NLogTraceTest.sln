@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NLogTraceTest", "NLogTraceTest\NLogTraceTest.csproj", "{4BF64A93-E5CF-4FF5-9A8D-E365486A45BA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestLibrary", "TestLibrary\TestLibrary.csproj", "{F54B907E-BFE3-44E2-B0ED-A22BAEFEC6CC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4BF64A93-E5CF-4FF5-9A8D-E365486A45BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BF64A93-E5CF-4FF5-9A8D-E365486A45BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BF64A93-E5CF-4FF5-9A8D-E365486A45BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BF64A93-E5CF-4FF5-9A8D-E365486A45BA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F54B907E-BFE3-44E2-B0ED-A22BAEFEC6CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F54B907E-BFE3-44E2-B0ED-A22BAEFEC6CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F54B907E-BFE3-44E2-B0ED-A22BAEFEC6CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F54B907E-BFE3-44E2-B0ED-A22BAEFEC6CC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D6AC9212-A3AA-4809-A83C-F4AF39C4A8F2}
+	EndGlobalSection
+EndGlobal
