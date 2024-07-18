@@ -17,7 +17,7 @@ internal class Program
 	public void Run(string[] args)
 	{
 		Trace.Listeners.Clear(); // デフォルトの出力をクリア
-		Trace.Listeners.Add(new TestTraceListener());
+		Trace.Listeners.Add(new LevelTraceListener(LogLevel.Info));
 
 		Debug.WriteLine("test 1.");
 
