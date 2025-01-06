@@ -1,0 +1,9 @@
+﻿<Application x:Class="BigCalendar.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:BigCalendar"
+             >
+    <Application.Resources>
+         
+    </Application.Resources>
+</Application>
