@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35931.197
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputKeyToText", "InputKeyToText\InputKeyToText.csproj", "{468FB4FC-B0D4-4CC1-9C45-C432EEE43AB8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{468FB4FC-B0D4-4CC1-9C45-C432EEE43AB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{468FB4FC-B0D4-4CC1-9C45-C432EEE43AB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{468FB4FC-B0D4-4CC1-9C45-C432EEE43AB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{468FB4FC-B0D4-4CC1-9C45-C432EEE43AB8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F36E750A-A65E-4F3B-AEC1-9569E304CFA2}
+	EndGlobalSection
+EndGlobal

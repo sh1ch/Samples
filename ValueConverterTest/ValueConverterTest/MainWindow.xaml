@@ -1,0 +1,49 @@
+﻿<Window x:Class="ValueConverterTest.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ValueConverterTest"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Window.Resources>
+        <local:NoParamConverter x:Key="NoParamConverter" />
+        <local:ParamConverter x:Key="ParamConverter" />
+        <local:ParamExConverter x:Key="ParamExConverter1" Param="Param2-1" />
+        <!--
+        <local:ParamExConverter x:Key="ParamExConverter2" Param="{Binding Param2}" />
+        -->
+        
+        <local:ParamEx2Converter x:Key="ParamEx2Converter1" Param="Param3-1" />
+        <local:BindingProxy x:Key="BindingProxy" Data="{Binding Param}" />
+        <local:ParamEx2Converter x:Key="ParamEx2Converter2" Param="{Binding Data, Source={StaticResource BindingProxy}}" />
+        <local:ParamEx2Converter x:Key="ParamEx2Converter3" Param="{Binding Param}" />
+        <local:ParamEx3Converter x:Key="ParamEx3Converter1" Param="{Binding Param}" />
+
+    </Window.Resources>
+    <StackPanel Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+        <Label Content="{Binding Text1, Converter={StaticResource NoParamConverter}, ConverterParameter=Param1}" />
+        <!--
+        <Label Content="{Binding Text1, Converter={StaticResource NoParamConverter}, ConverterParameter={Binding Data, Source={StaticResource BindingProxy}}}" />
+        -->
+
+        <!--
+        <Label Content="{Binding Text1, Converter={StaticResource ParamConverter}, Param=Param1}" />
+        <Label Content="{Binding Text1, Converter={local:ParamConverter Param=Param2}}" />
+        -->
+        
+
+        <Label Content="{Binding Text1, Converter={StaticResource ParamExConverter1}}" />
+        <Label Content="{Binding Text1, Converter={local:ParamExConverter Param=Param2-2}}" />
+
+        <Label Content="{Binding Text1, Converter={StaticResource ParamEx2Converter1}}" />
+        <Label Content="{Binding Text1, Converter={StaticResource ParamEx2Converter2}}" />
+        <Label Content="{Binding Text1, Converter={StaticResource ParamEx2Converter3}}" />
+
+        <Label Content="{Binding Text1, Converter={StaticResource ParamEx3Converter1}}" />
+
+        <Button Padding="10" Margin="10"
+                Click="Button_Click"
+                Content="VM Param の変更イベント (効果なし)" />
+    </StackPanel>
+</Window>
